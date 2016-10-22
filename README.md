@@ -27,7 +27,13 @@ Create the DB (on disk):
 ```bash
 ./manage.py migrate --run-syncdb
 ```
-This will also reload **updated models**.
+After updating models, run this beforehand:
+
+```bash
+./manage.py makemigrations
+```
+
+
 
 
 
