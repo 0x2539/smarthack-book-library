@@ -24,12 +24,14 @@ def books(request):
 
 
 def search(request, terms):
+    terms = terms.replace('_', ' ')
     results = Book.objects.filter(
       Q(title__contains=terms) |
       Q(author__contains=terms) |
       Q(description__contains=terms) |
       Q(genre__contains=terms)
     )
+    print('>'*5, terms)
     return json_response(results)
 
 
