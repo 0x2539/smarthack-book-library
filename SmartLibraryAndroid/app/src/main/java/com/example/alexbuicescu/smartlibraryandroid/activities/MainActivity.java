@@ -39,6 +39,9 @@ import org.greenrobot.eventbus.Subscribe;
 public class MainActivity extends BaseActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+
+    public static final String KEY_BOOK_ID = "KEY_BOOK_ID";
+
     private EditText searchEditText;
     private ListView booksListView;
     private BooksListAdapter booksAdapter;
@@ -49,6 +52,8 @@ public class MainActivity extends BaseActivity {
     private RelativeLayout searchRelativeLayout;
     private AppCompatImageView searchBackButton;
     private TextView username;
+
+    private long pendingBookId;
 //    private MaterialSearchView searchView;
 
     public static final int NAVDRAWER_LAUNCH_DELAY = 100;
@@ -59,6 +64,14 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         initLayout();
         loadBooks();
+
+        if (getIntent() != null) {
+            long bookId = getIntent().getLongExtra(KEY_BOOK_ID, -1);
+            onNewIntent(bookId);
+        }
+        else {
+            Log.i(TAG, "onCreate: null intent");
+        }
     }
 
     private void loadBooks() {
@@ -269,6 +282,12 @@ public class MainActivity extends BaseActivity {
         if (message.isSuccess()) {
             booksAdapter.setCurrentItems(BooksManager.getInstance().getMainBooksResponses());
             Log.i(TAG, "onEvent: " + BooksManager.getInstance().getMainBooksResponses().size());
+            if (pendingBookId != 0) {
+                pendingBookId = 0;
+                Intent intent = new Intent(MainActivity.this, BookDetailsActivity.class);
+                intent.putExtra(BookDetailsActivity.KEY_BOOK_ID, pendingBookId);
+                startActivity(intent);
+            }
         }
     }
 
@@ -276,6 +295,31 @@ public class MainActivity extends BaseActivity {
     public void onEvent(SearchMessage message) {
         if (message.isSuccess()) {
             booksAdapter.setCurrentItems(BooksManager.getInstance().getSearchedResultBooks());
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+
+        if (intent != null) {
+            long bookId = intent.getLongExtra(KEY_BOOK_ID, -1);
+            onNewIntent(bookId);
+        }
+    }
+
+    private void onNewIntent(long bookId) {
+        Log.i(TAG, "onNewIntent: book id " + bookId);
+        if (bookId != -1) {
+            if (BooksManager.getInstance().getMainBooksResponses().size() == 0) {
+                pendingBookId = bookId;
+                return;
+            }
+            Intent intent1 = new Intent(MainActivity.this, BookDetailsActivity.class);
+            intent1.putExtra(BookDetailsActivity.KEY_BOOK_ID, bookId);
+            MainActivity.this.startActivity(intent1);
+            Log.i(TAG, "onNewIntent: start activity");
         }
     }
 }

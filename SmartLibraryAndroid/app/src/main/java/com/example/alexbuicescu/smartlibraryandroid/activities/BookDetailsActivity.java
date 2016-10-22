@@ -66,6 +66,7 @@ public class BookDetailsActivity extends BaseActivity {
         Intent intent = getIntent();
         if (intent != null) {
             long bookId = intent.getLongExtra(KEY_BOOK_ID, -1);
+            Log.i(TAG, "getExtras: book id " + bookId);
             if (bookId == -1) {
                 return false;
             }

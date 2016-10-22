@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.alexbuicescu.smartlibraryandroid.R;
+import com.example.alexbuicescu.smartlibraryandroid.fcm.MyFirebaseUtils;
 import com.example.alexbuicescu.smartlibraryandroid.pojos.eventbus.LoginMessage;
 import com.example.alexbuicescu.smartlibraryandroid.rest.RestClient;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.LoginRequest;
@@ -165,6 +166,9 @@ public class LoginActivity extends BaseActivity {
     public void onEvent(LoginMessage message) {
         Log.i(TAG, "onEvent: " + message.isSuccess());
         if(UserPreferences.isUserLoggedIn(LoginActivity.this)) {
+
+            MyFirebaseUtils.subscribeToCurrentUserTopic(LoginActivity.this, UserPreferences.getUsername(LoginActivity.this));
+
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
