@@ -3,12 +3,9 @@
 {% block title %}{{ title }} | {{ site_title|default:_('placeholder title') }}{% endblock %}
 
 {% block branding %}
-<h1 id="site-name"><a href="{% url 'admin:index' %}">
-{#  {% block branding %}#}
-    <h1 id="site-name"><a href="{% url 'admin:index' %}">cel mai cool proiect</a></h1>
-{#  {% endblock %}#}
-
-</a></h1>
+  <h1 id="site-name"><a href="{% url 'admin:index' %}">
+    cel mai cool proiect
+  </a></h1>
 {% endblock %}
 
 {% block nav-global %}{% endblock %}
