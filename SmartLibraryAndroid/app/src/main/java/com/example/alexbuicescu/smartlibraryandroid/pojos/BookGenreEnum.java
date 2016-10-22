@@ -3,9 +3,8 @@ package com.example.alexbuicescu.smartlibraryandroid.pojos;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by alexbuicescu on 10/22/16.
+ * Created by alexbuicescu on Oct 22 - 2016.
  */
-
 public enum BookGenreEnum {
     @SerializedName("SF")
     SCI_FI("Sci-Fi"),

@@ -4,63 +4,106 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
-    <TextView
-        android:id="@+id/activity_book_details_description_textview"
+    <com.nirhart.parallaxscroll.views.ParallaxScrollView
+        android:id="@+id/fragment_maps_sliding_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        tools:text="some relasldmaskldnkj asbdkjas dkjasdbkab dkjas dbkajsd bkajsd bakjs dbkajs bkasdbas das das das d" />
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:visibility="visible"
+        app:parallax_factor="1.5">
 
-    <RelativeLayout
-        android:id="@+id/activity_book_details_borrow_relativelayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_below="@+id/activity_book_details_description_textview">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/activity_book_details_borrow_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/borrow_book_button" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/white">
 
-        <Button
-            android:id="@+id/activity_book_details_already_borrowed_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:enabled="false"
-            android:text="@string/book_already_borrowed_button"
-            android:theme="@style/UnavailableButton"
-            android:visibility="gone" />
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/activity_book_details_blurred_cover_imageview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"/>
 
-    </RelativeLayout>
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/activity_book_details_cover_imageview"
+                    android:layout_width="180dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:scaleType="fitCenter"/>
 
-    <TextView
-        android:id="@+id/activity_book_details_recommandations_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/recommendations"
-        android:layout_below="@+id/activity_book_details_borrow_relativelayout"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:textColor="@color/colorPrimaryDark"/>
+            </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/activity_book_details_other_books_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/activity_book_details_recommandations_textview"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:clipToPadding="false"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/activity_book_details_description_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    tools:text="some relasldmaskldnkj asbdkjas dkjasdbkab dkjas dbkajsd bkajsd bakjs dbkajs bkasdbas das das das d" />
+
+                <RelativeLayout
+                    android:id="@+id/activity_book_details_borrow_relativelayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/activity_book_details_description_textview"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin">
+
+                    <Button
+                        android:id="@+id/activity_book_details_borrow_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/borrow_book_button" />
+
+                    <Button
+                        android:id="@+id/activity_book_details_already_borrowed_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:enabled="false"
+                        android:text="@string/book_already_borrowed_button"
+                        android:theme="@style/UnavailableButton"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/activity_book_details_recommandations_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/activity_book_details_borrow_relativelayout"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:text="@string/recommendations"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/activity_book_details_other_books_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/activity_book_details_recommandations_textview"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </com.nirhart.parallaxscroll.views.ParallaxScrollView>
 
 </RelativeLayout>

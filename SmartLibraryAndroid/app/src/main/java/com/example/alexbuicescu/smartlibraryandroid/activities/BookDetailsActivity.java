@@ -1,6 +1,7 @@
 package com.example.alexbuicescu.smartlibraryandroid.activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
@@ -17,7 +18,10 @@ import com.example.alexbuicescu.smartlibraryandroid.pojos.eventbus.LoanDateMessa
 import com.example.alexbuicescu.smartlibraryandroid.pojos.eventbus.LoanedTogetherWithMessage;
 import com.example.alexbuicescu.smartlibraryandroid.rest.RestClient;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.MainBooksResponse;
+import com.example.alexbuicescu.smartlibraryandroid.views.BlurBuilder;
 import com.example.alexbuicescu.smartlibraryandroid.views.OtherBooksAdapter;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -33,6 +37,7 @@ public class BookDetailsActivity extends BaseActivity {
 
     private TextView descriptionTextView;
     private AppCompatImageView coverImageView;
+    private AppCompatImageView coverImageViewBlurred;
     private Button borrowButton;
     private Button alreadyBorrowedButton;
 
@@ -88,6 +93,18 @@ public class BookDetailsActivity extends BaseActivity {
             }
         });
         alreadyBorrowedButton = (Button) findViewById(R.id.activity_book_details_already_borrowed_button);
+
+        coverImageView = (AppCompatImageView) findViewById(R.id.activity_book_details_cover_imageview);
+        coverImageViewBlurred = (AppCompatImageView) findViewById(R.id.activity_book_details_blurred_cover_imageview);
+//        ImageLoader.getInstance().displayImage(book.getBook().getCoverUrl(), holder.coverImageView);
+        ImageLoader.getInstance().loadImage(book.getBook().getCoverUrl(), new SimpleImageLoadingListener() {
+            @Override
+            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                // Do whatever you want with Bitmap
+                coverImageViewBlurred.setImageBitmap(BlurBuilder.blur(BookDetailsActivity.this, loadedImage));
+                coverImageView.setImageBitmap(loadedImage);
+            }
+        });
     }
 
     private void initToolbar() {

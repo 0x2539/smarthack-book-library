@@ -24,6 +24,6 @@
     <string name="borrow_book_button">Borrow</string>
     <string name="book_already_borrowed_button">Already Borrowed</string>
 
-    <string name="recommendations">Recommandations</string>
+    <string name="recommendations">Loaned together</string>
 
 </resources>
