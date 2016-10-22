@@ -91,5 +91,5 @@ ENV/
 # PyCharm
 .idea/
 
-
-db.sqlite*
+# macOS
+.DS_Store
