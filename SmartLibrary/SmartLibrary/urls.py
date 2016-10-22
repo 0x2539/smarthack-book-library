@@ -24,5 +24,6 @@ urlpatterns = [
 
     url(r'^api/books', views.books, name='books'),
     url(r'^api/login', views.login, name='login'),
-    url(r'^api/my_books', views.my_books, name='my_books'),
+    url(r'^api/my_books', views.my_books, name='my books'),
+    url(r'api/book_details/(?P<id>\d+)/?$', views.book_details, name='book details'),
 ]

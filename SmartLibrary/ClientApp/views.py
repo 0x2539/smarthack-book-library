@@ -1,13 +1,17 @@
 import json
+from functools import partial
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.core.serializers import serialize
 
 from .models import Book, User
 from .login_utils import generate_login_token, login_only
 
+
 GET = 'GET'
 POST = 'POST'
+
+json_serialize = partial(serialize, 'json')
+json_response = lambda data: HttpResponse(json_serialize(data), content_type='application/json')
 
 
 def home(request):
@@ -15,8 +19,7 @@ def home(request):
 
 
 def books(request):
-    data = serialize('json', Book.objects.all())
-    return HttpResponse(data, content_type='application/json')
+    return json_response(Book.objects.all())
 
 
 def login(request):
@@ -45,3 +48,8 @@ def login(request):
 @login_only
 def my_books(request):
     return HttpResponse(status=200, content=json.dumps({'lol': 'asd'}))
+
+
+def book_details(request, id):
+    book = Book.objects.get(id=id)
+    return json_response([book])

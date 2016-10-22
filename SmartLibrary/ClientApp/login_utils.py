@@ -1,8 +1,8 @@
 import json
 from datetime import datetime, timedelta
-
 import jwt
 from django.http import HttpResponse
+from ClientApp.utils import request_to_dict
 
 JWT_SECRET_KEY = 'SECRET'
 
@@ -29,7 +29,7 @@ def generate_login_token(user_id):
 def login_only(api_function):
     def wrapper(request, *args, **kwargs):
 
-        body = json.loads(request.body.decode('utf-8'))
+        body = request_to_dict(request)
         token = body.get('token', None)
 
         if decode_token(token):
