@@ -21,4 +21,6 @@ from ClientApp import views
 urlpatterns = [
     url(r'^admin/?', admin.site.urls),
     url(r'^$', views.home, name='home'),
+
+    url(r'^api/books', views.api_books, name='api_books')
 ]

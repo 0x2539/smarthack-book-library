@@ -1,6 +1,8 @@
 #!/usr/bin/env python
-from django.db import models
 from datetime import datetime
+from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
 
 class Book(models.Model):
@@ -15,12 +17,23 @@ class Book(models.Model):
         ('SelfDev', 'Self Development'),
         ('R', 'Romance'),
     ]
-
-    # Example query: Book.objects.filter(genre='SF')
     genre = models.CharField(choices=GENRES, max_length=16)
 
     def __str__(self):
         return self.title
+
+
+class Profile(models.Model):
+    # access like: request.user.profile.google_id
+    user = models.OneToOneField(User)
+    google_id = models.CharField(max_length=64)
+
+
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+post_save.connect(create_user_profile, sender=User)
 
 
 def populate():
