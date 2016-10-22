@@ -1,0 +1,82 @@
+
+.intro-header{
+height:630px;
+padding-top:50px;
+padding-bottom:50px;
+color:#f8f8f8;
+background-size:cover;
+text-align:center;
+background-color:#B2DFDB; 
+overflow: hidden;
+}
+
+.affix {
+      top: 0;
+      width: 100%;
+  }
+
+.affix + .container-fluid {
+      padding-top: 70px;
+  }
+
+ .impimg{
+ 	padding-bottom:60px; 
+ }
+
+.navbar{
+    margin-bottom: 0px;
+}
+.navbar-default{
+	background-color: #fff;
+}
+#nav{
+  z-index:9999;
+}
+
+
+section {
+  padding: 100px 0;
+}
+section h2 {
+  font-size: 50px;
+}
+section.download {
+  padding: 150px 0;
+  background-color: #FF4081;
+}
+section.download h2 {
+  margin-top: 0;
+  font-size: 50px;
+}
+section.download .badges .badge-link {
+  display: block;
+  margin-bottom: 25px;
+}
+section.download .badges .badge-link:last-child {
+  margin-bottom: 0;
+}
+section.download .badges .badge-link img {
+  height: 60px;
+}
+@media (min-width: 768px) {
+  section.download .badges .badge-link {
+    display: inline-block;
+    margin-bottom: 0;
+  }
+}
+@media (min-width: 768px) {
+  section.download h2 {
+    font-size: 70px;
+  }
+}
+
+footer {
+  background-color: #212121;
+  padding: 25px 0;
+  color: #BDBDBD;
+  text-align: center;
+}
+footer p {
+  font-size: 20px;
+  margin: 0;
+}
