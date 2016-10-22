@@ -1,28 +1,47 @@
+import json
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.core.serializers import serialize
 
-from .models import Book
-
+from .models import Book, User
+from .login_utils import generate_login_token, login_only
 
 GET = 'GET'
 POST = 'POST'
 
 
 def home(request):
-    books = Book.objects.all()
-    print(books)
-    return render(request, 'home.html', context={
-        'books': books
-    })
+    return HttpResponse('landing page here')
 
 
-def api_books(request):
+def books(request):
     data = serialize('json', Book.objects.all())
     return HttpResponse(data, content_type='application/json')
 
 
-# def api_login(request):
-#     if request.method == POST:
+def login(request):
+    body = json.loads(request.body.decode('utf-8'))
+
+    username = body.get('username', None)
+    password = body.get('password', None)
+    google_id = body.get('google_id', None)
+
+    user = None
+    if google_id:
+        user = User.objects.get(google_id=google_id)
+
+    elif username and password:
+        user = User.objects.get(username=username)  # and password
+
+    if not user:
+        return HttpResponse(status=400, content='User & Password or Google ID not specified/incorrect')
+
+    token = generate_login_token(user.id)
+    token_json = json.dumps({'token': token})
+
+    return HttpResponse(status=200, content=token_json)
 
 
+@login_only
+def my_books(request):
+    return HttpResponse(status=200, content=json.dumps({'lol': 'asd'}))

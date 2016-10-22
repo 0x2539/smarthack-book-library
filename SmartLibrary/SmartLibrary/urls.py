@@ -22,5 +22,7 @@ urlpatterns = [
     url(r'^admin/?', admin.site.urls),
     url(r'^$', views.home, name='home'),
 
-    url(r'^api/books', views.api_books, name='api_books')
+    url(r'^api/books', views.books, name='books'),
+    url(r'^api/login', views.login, name='login'),
+    url(r'^api/my_books', views.my_books, name='my_books'),
 ]
