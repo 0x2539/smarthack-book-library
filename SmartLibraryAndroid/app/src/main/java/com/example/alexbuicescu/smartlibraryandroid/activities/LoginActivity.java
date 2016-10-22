@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +18,7 @@ import com.example.alexbuicescu.smartlibraryandroid.R;
 import com.example.alexbuicescu.smartlibraryandroid.pojos.eventbus.LoginMessage;
 import com.example.alexbuicescu.smartlibraryandroid.rest.RestClient;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.LoginRequest;
+import com.example.alexbuicescu.smartlibraryandroid.utils.UserPreferences;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
@@ -40,12 +43,21 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(UserPreferences.isUserLoggedIn(LoginActivity.this)) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            return;
+        }
+
         setContentView(R.layout.activity_login);
         initLayout();
         initSocialMediaLogin();
     }
 
     private void initLayout() {
+        initToolbar();
+
         usernameEditText = (EditText) findViewById(R.id.activity_login_username_edittext);
         passwordEditText = (EditText) findViewById(R.id.activity_login_password_edittext);
 
@@ -67,6 +79,11 @@ public class LoginActivity extends BaseActivity {
                 doLogin(usernameEditText.getText().toString(), passwordEditText.getText().toString());
             }
         });
+    }
+
+    private void initToolbar() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     private void initSocialMediaLogin() {
@@ -149,10 +166,33 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void doLogin(String username, String password) {
-        RestClient.getInstance().LOGIN_CALL(new LoginRequest(username, password));
+        RestClient.getInstance(LoginActivity.this).LOGIN_CALL(new LoginRequest(username, password));
     }
 
     private void doLogin(String googleUserId) {
-        RestClient.getInstance().LOGIN_CALL(new LoginRequest(googleUserId));
+        RestClient.getInstance(LoginActivity.this).LOGIN_CALL(new LoginRequest(googleUserId));
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_login, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }

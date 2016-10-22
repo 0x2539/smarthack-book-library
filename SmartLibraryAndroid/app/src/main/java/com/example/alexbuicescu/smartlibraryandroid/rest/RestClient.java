@@ -3,8 +3,13 @@ package com.example.alexbuicescu.smartlibraryandroid.rest;
 import android.content.Context;
 
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.LoginCallback;
+import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.MainBooksCallback;
+import com.example.alexbuicescu.smartlibraryandroid.rest.requests.EmptyRequest;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.LoginRequest;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.LoginResponse;
+import com.example.alexbuicescu.smartlibraryandroid.rest.responses.MainBooksResponse;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -58,6 +63,12 @@ public class RestClient {
         );
         //asynchronous call
         call.enqueue(new LoginCallback(context, body));
+    }
+
+    public void BOOKS_CALL() {
+        Call<ArrayList<MainBooksResponse>> call = getApiService().BOOKS_CALL();
+        //asynchronous call
+        call.enqueue(new MainBooksCallback(context, new EmptyRequest()));
     }
 
     private void setContext(Context context) {
