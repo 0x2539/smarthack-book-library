@@ -34,7 +34,7 @@ This will also reload **updated models**.
 ## Run
 
 ```bash
-./manage.py runserver
+./manage.py runserver 0.0.0.0:5728
 ```
 
 Access at [localhost:8000](http://localhost:8000).
