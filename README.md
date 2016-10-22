@@ -37,4 +37,4 @@ This will also reload **updated models**.
 ./manage.py runserver 0.0.0.0:5728
 ```
 
-Access at [localhost:8000](http://localhost:8000).
+Access at [0.0.0.0:5728](http://0.0.0.0:5728).
