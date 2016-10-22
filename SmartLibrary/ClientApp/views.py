@@ -1,6 +1,7 @@
 import json
+from datetime import timedelta
 from functools import partial
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.core.serializers import serialize
 from django.db.models import Q
 
@@ -67,3 +68,37 @@ def loaned_by(request, user_id):
 def loaned_together_with(request, book_id):
     book = Book.objects.get(id=book_id)
     return json_response(book.loaned_together())
+
+
+@login_only
+def loan_date(request, user_id, book_id):
+    try:
+        loan = Loan.objects.get(
+            Q(user_id=user_id) &
+            Q(book_id=book_id)
+        )
+    except:
+        return JsonResponse({'date': None})
+
+    return JsonResponse({'date': loan.return_date.strftime('%-d %b %Y')})
+
+
+@login_only
+def place_loan(request, user_id, book_id):
+    user = User.objects.get(id=user_id)
+    book = Book.objects.get(id=book_id)
+
+    try:
+        # Loan already exists, extend its period
+        loan = Loan.objects.get(user=user, book=book)
+        loan.return_date += timedelta(days=30)
+        loan.save()
+    except:
+        # Loan doesn't exit, create it now
+        loan = Loan.objects.create(
+            user=user,
+            book=book
+        )
+        loan.save()
+
+    return HttpResponse(status=200, content=json.dumps({}))

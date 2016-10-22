@@ -33,18 +33,15 @@ class Book(models.Model):
 
     def loaned_together(self):
         loans = Loan.objects.filter(book=self)
-        loans_around = [loan.user.profile.loaned_around(loan.date) for loan in loans]
+        loans_around = [loan.user.profile.loaned_around(loan.start_date) for loan in loans]
         return join_querysets(loans_around) - {self}
 
-
-def test():
-    lotr = Book.objects.get(title__contains='rings')
-    return lotr.loaned_together()
 
 class Loan(models.Model):
     user = models.ForeignKey(User, related_name='loans')
     book = models.ForeignKey(Book)
-    date = models.DateTimeField(default=datetime.now)
+    start_date = models.DateTimeField(default=datetime.now)
+    return_date = models.DateTimeField(default=lambda: datetime.now() + timedelta(days=30))
 
     def __str__(self):
         return '%s - %s' % (self.user, self.book)
@@ -58,7 +55,7 @@ class Profile(models.Model):
     def loaned_around(self, date):
         before = date - timedelta(minutes=10)
         after  = date + timedelta(minutes=10)
-        loans = self.user.loans.filter(date__range=[before, after])
+        loans = self.user.loans.filter(start_date__range=[before, after])
         return [loan.book for loan in loans]
 
 
@@ -129,11 +126,11 @@ def populate():
                password='parola123')
 
     # Loans
-    stefan_lotr = make(Loan, user=stefan, book=lotr, date=datetime(day=22, month=10, year=2016, hour=19, minute=30))
-    stefan_sw = make(Loan, user=stefan, book=sw, date=datetime(day=22, month=10, year=2016, hour=19, minute=35))
-    stefan_cormen = make(Loan, user=stefan, book=cormen, date=datetime(day=22, month=2, year=2016, hour=10, minute=0))
+    stefan_lotr = make(Loan, user=stefan, book=lotr, start_date=datetime(day=22, month=10, year=2016, hour=19, minute=30))
+    stefan_sw = make(Loan, user=stefan, book=sw, start_date=datetime(day=22, month=10, year=2016, hour=19, minute=35))
+    stefan_cormen = make(Loan, user=stefan, book=cormen, start_date=datetime(day=22, month=2, year=2016, hour=10, minute=0))
 
-    alex_lotr = make(Loan, user=alex, book=lotr, date=datetime(day=22, month=10, year=2016, hour=18, minute=10))
-    alex_got = make(Loan, user=alex, book=got, date=datetime(day=22, month=10, year=2016, hour=18, minute=11))
+    alex_lotr = make(Loan, user=alex, book=lotr, start_date=datetime(day=22, month=10, year=2016, hour=18, minute=10))
+    alex_got = make(Loan, user=alex, book=got, start_date=datetime(day=22, month=10, year=2016, hour=18, minute=11))
 
-    ade_swift = make(Loan, user=ade, book=swift, date=datetime(day=5, month=6, year=2016, hour=12, minute=0))
+    ade_swift = make(Loan, user=ade, book=swift, start_date=datetime(day=5, month=6, year=2016, hour=12, minute=0))
