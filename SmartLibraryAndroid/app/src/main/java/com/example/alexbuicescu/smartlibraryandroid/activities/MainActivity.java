@@ -6,12 +6,19 @@ import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.example.alexbuicescu.smartlibraryandroid.R;
 import com.example.alexbuicescu.smartlibraryandroid.managers.BooksManager;
@@ -34,6 +41,9 @@ public class MainActivity extends BaseActivity {
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private SmoothActionBarDrawerToggle navigationToggle;
+    private AppCompatImageView searchImageView;
+    private RelativeLayout searchRelativeLayout;
+    private AppCompatImageView searchBackButton;
 //    private MaterialSearchView searchView;
 
     public static final int NAVDRAWER_LAUNCH_DELAY = 100;
@@ -54,36 +64,93 @@ public class MainActivity extends BaseActivity {
         initToolbar();
         initNavigationView();
 
+        searchRelativeLayout = (RelativeLayout) findViewById(R.id.activity_main_search_relativelayout);
+        searchBackButton = (AppCompatImageView) findViewById(R.id.activity_main_back_button_search_button);
+        searchBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideSearch();
+            }
+        });
+        searchImageView = (AppCompatImageView) findViewById(R.id.activity_main_search_imageview);
+        searchImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showSearch();
+//                RestClient.getInstance(MainActivity.this).SEARCH_CALL(searchEditText.getText().toString());
+            }
+        });
         searchEditText = (EditText) findViewById(R.id.activity_main_search_edittext);
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String searchQuery = searchEditText.getText().toString();
+                if (searchQuery.length() >= 3) {
+                    RestClient.getInstance(MainActivity.this).SEARCH_CALL(searchQuery);
+                }
+                else if (searchQuery.length() == 0) {
+                    booksAdapter.setCurrentItems(BooksManager.getInstance().getMainBooksResponses());
+                }
+            }
+        });
         booksAdapter = new BooksListAdapter(MainActivity.this);
         booksListView = (ListView) findViewById(R.id.activity_main_all_books_listview);
         booksListView.setAdapter(booksAdapter);
-//        searchView = (MaterialSearchView) findViewById(R.id.search_view);
-//        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                //Do some magic
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                //Do some magic
-//                return false;
-//            }
-//        });
-//
-//        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
-//            @Override
-//            public void onSearchViewShown() {
-//                //Do some magic
-//            }
-//
-//            @Override
-//            public void onSearchViewClosed() {
-//                //Do some magic
-//            }
-//        });
+    }
+
+    private void hideSearch() {
+        Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.alpha_full_to_none);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                searchRelativeLayout.setVisibility(View.GONE);
+                searchEditText.setText("");
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        searchRelativeLayout.startAnimation(animation);
+        booksAdapter.setCurrentItems(BooksManager.getInstance().getMainBooksResponses());
+    }
+
+    private void showSearch() {
+        Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.alpha_none_to_full);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                searchEditText.requestFocus();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        searchRelativeLayout.startAnimation(animation);
+        searchRelativeLayout.setVisibility(View.VISIBLE);
     }
 
     private void initNavigationView() {
@@ -148,9 +215,6 @@ public class MainActivity extends BaseActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
-        MenuItem item = menu.findItem(R.id.action_search);
-//        searchView.setMenuItem(item);
-
         return true;
     }
 
@@ -160,10 +224,6 @@ public class MainActivity extends BaseActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        if (id == R.id.action_search) {
-            RestClient.getInstance(MainActivity.this).SEARCH_CALL(searchEditText.getText().toString());
-        }
 
         if (navigationToggle.onOptionsItemSelected(item)) {
             return true;
