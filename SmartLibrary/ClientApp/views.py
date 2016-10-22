@@ -53,7 +53,7 @@ def login(request):
         return HttpResponse(status=400, content='User & Password or Google ID not specified/incorrect')
 
     token = generate_login_token(user.id)
-    token_json = json.dumps({'token': token})
+    token_json = json.dumps({'token': token, 'username': user.username})
 
     return HttpResponse(status=200, content=token_json)
 

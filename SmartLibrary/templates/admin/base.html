@@ -61,7 +61,7 @@
     <!-- END Header -->
 
 <!-- Container -->
-<div id="container"> 
+<div id="container" class="container">
     {% block breadcrumbs %}
     <div class="breadcrumbs">
     <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
@@ -80,7 +80,7 @@
     <!-- Content -->
     <div id="content" class="{% block coltype %}colM{% endblock %}">
         {% block pretitle %}{% endblock %}
-        {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+        {% block content_title %}{% if title %}<h1>Library administration</h1>{% endif %}{% endblock %}
         {% block content %}
         {% block object-tools %}{% endblock %}
         {{ content }}

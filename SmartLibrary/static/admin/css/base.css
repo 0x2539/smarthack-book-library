@@ -549,7 +549,7 @@ input[type=button][disabled].default {
 .inline-group h2 {
     font-size: 18px;
     letter-spacing: 0.5px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 .module table {
@@ -785,13 +785,14 @@ table#change-history tbody th {
 
 #container {
     position: relative;
-    width: 100%;
-    min-width: 980px;
+    /*width: 100%;*/
+    /*min-width: 980px;*/
     padding: 0;
 }
 
 #content {
-    padding: 20px 40px;
+    /*padding: 20px 40px;*/
+    padding: 15px;
 }
 /*
 .dashboard #content {
@@ -818,11 +819,11 @@ table#change-history tbody th {
 /* COLUMN TYPES */
 
 .colMS {
-    margin-right: 100px;
+    /*margin-right: 100px;*/
 }
 
 .colSM {
-    margin-left: 300px;
+    /*margin-left: 300px;*/
 }
 
 .colSM #content-related {
