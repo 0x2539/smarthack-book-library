@@ -8,7 +8,10 @@
   books:
   <ul>
     {% for book in books %}
-      <li>{{ book.title }}</li>
+      <li>
+        <img src="{{ book.cover_url }}" alt="{{ book.title }} cover" style="height: 100px">
+        [{{ book.get_genre_display }}] {{ book.title }} ({{ book.release_date }}) - {{ book.description }}
+      </li>
     {% endfor %}
   </ul>
 
