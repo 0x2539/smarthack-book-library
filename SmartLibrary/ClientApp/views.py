@@ -31,7 +31,6 @@ def search(request, terms):
       Q(description__contains=terms) |
       Q(genre__contains=terms)
     )
-    print('>'*5, terms)
     return json_response(results)
 
 
@@ -65,7 +64,6 @@ def loaned_by(request, user_id):
     return json_response(books)
 
 
-# @login_only
-def book_details(request, id):
-    book = Book.objects.get(id=id)
-    return json_response([book])
+def loaned_together_with(request, book_id):
+    book = Book.objects.get(id=book_id)
+    return json_response(book.loaned_together())

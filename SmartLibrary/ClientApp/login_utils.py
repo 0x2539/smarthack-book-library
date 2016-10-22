@@ -34,7 +34,8 @@ def login_only(api_function):
 
         user_id = decode_token(token)
         if user_id:
-            return api_function(request, user_id, *args, **kwargs)
+            kwargs.update({'user_id': user_id})
+            return api_function(request, *args, **kwargs)
 
         return HttpResponse(status=400, content=json.dumps({'error': 'LOGIN_INVALID'}))
 
