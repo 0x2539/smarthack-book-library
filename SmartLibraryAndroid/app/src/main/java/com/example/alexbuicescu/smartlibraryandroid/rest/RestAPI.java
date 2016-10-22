@@ -1,5 +1,6 @@
 package com.example.alexbuicescu.smartlibraryandroid.rest;
 
+import com.example.alexbuicescu.smartlibraryandroid.rest.requests.LoggedInRequest;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.LoginRequest;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.LoginResponse;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.MainBooksResponse;
@@ -25,6 +26,11 @@ public interface RestAPI {
 
     @GET("books")
     Call<ArrayList<MainBooksResponse>> BOOKS_CALL();
+
+    @POST("loaned_by")
+    Call<ArrayList<MainBooksResponse>> BORROWED_CALL(
+            @Body LoggedInRequest request
+    );
 
     @GET("search/{search_query}")
     Call<ArrayList<MainBooksResponse>> SEARCH_CALL(
