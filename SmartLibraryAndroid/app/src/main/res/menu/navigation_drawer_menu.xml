@@ -12,15 +12,15 @@
         <item
             android:id="@+id/navigation_drawer_menu_borrowed_action"
             android:title="@string/drawer_borrowed"/>
+
+        <item
+            android:id="@+id/navigation_drawer_menu_recommended_action"
+            android:title="@string/drawer_recommended"/>
+
     </group>
     <group
         android:id="@+id/menu_top2"
         android:checkableBehavior="single">
-
-        <item
-            android:id="@+id/navigation_drawer_menu_recommended_action"
-            android:checked="true"
-            android:title="@string/drawer_recommended"/>
 
         <item
             android:id="@+id/navigation_drawer_menu_profile_action"

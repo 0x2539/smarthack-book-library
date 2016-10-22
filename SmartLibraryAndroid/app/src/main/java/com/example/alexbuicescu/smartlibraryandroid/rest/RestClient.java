@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.LoginCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.MainBooksCallback;
+import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.SearchCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.EmptyRequest;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.LoginRequest;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.LoginResponse;
@@ -69,6 +70,14 @@ public class RestClient {
         Call<ArrayList<MainBooksResponse>> call = getApiService().BOOKS_CALL();
         //asynchronous call
         call.enqueue(new MainBooksCallback(context, new EmptyRequest()));
+    }
+
+    public void SEARCH_CALL(String searchQuery) {
+        searchQuery = searchQuery.replace(' ', '_');
+
+        Call<ArrayList<MainBooksResponse>> call = getApiService().SEARCH_CALL(searchQuery);
+        //asynchronous call
+        call.enqueue(new SearchCallback(context, new EmptyRequest()));
     }
 
     private void setContext(Context context) {

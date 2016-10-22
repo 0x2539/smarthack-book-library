@@ -69,5 +69,11 @@
         <item name="android:listDivider">@color/colorDivider</item>
         <item name="android:textColorSecondary">@color/grey_half</item>
     </style>
+    <style name="MaterialSearchViewStyle">
+        <!-- Change up icon -->
+        <item name="searchBackIcon">@null</item>
 
+        <!-- Hint for edit text -->
+        <item name="android:hint">@string/search_hint</item>
+    </style>
 </resources>

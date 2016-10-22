@@ -10,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 /**
  * Created by alexbuicescu on Oct 22 - 2016.
@@ -24,5 +25,10 @@ public interface RestAPI {
 
     @GET("books")
     Call<ArrayList<MainBooksResponse>> BOOKS_CALL();
+
+    @GET("search/{search_query}")
+    Call<ArrayList<MainBooksResponse>> SEARCH_CALL(
+            @Path("search_query") String searchQuery
+    );
 
 }

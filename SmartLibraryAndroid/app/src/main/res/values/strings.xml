@@ -16,5 +16,6 @@
 
     <string name="cancel_action">Cancel</string>
     <string name="save_action">Save</string>
+    <string name="search_hint">Search</string>
 
 </resources>

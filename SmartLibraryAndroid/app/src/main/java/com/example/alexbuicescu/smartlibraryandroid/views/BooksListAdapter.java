@@ -70,8 +70,8 @@ public class BooksListAdapter extends BaseAdapter {
         }
 
         holder.titleTextView.setText(currentItems.get(position).getBook().getTitle());
-//        ImageLoader.getInstance().displayImage(currentItems.get(position).getBook().getTitle(), holder.coverImageView);
-        ImageLoader.getInstance().displayImage("http://www.proprofs.com/quiz-school/topic_images/p19c7ebf8va58mc51mdqteg14453.jpg", holder.coverImageView);
+        ImageLoader.getInstance().displayImage(currentItems.get(position).getBook().getCoverUrl(), holder.coverImageView);
+//        ImageLoader.getInstance().displayImage("http://www.proprofs.com/quiz-school/topic_images/p19c7ebf8va58mc51mdqteg14453.jpg", holder.coverImageView);
 
         return convertView;
     }

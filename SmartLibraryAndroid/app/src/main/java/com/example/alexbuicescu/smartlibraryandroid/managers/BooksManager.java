@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class BooksManager {
     private static BooksManager ourInstance = new BooksManager();
     private ArrayList<MainBooksResponse> mainBooksResponses = new ArrayList<>();
+    private ArrayList<MainBooksResponse> searchedResultBooks = new ArrayList<>();
 
     public static BooksManager getInstance() {
         return ourInstance;
@@ -28,5 +29,16 @@ public class BooksManager {
 
     public void setMainBooksResponses(ArrayList<MainBooksResponse> mainBooksResponses) {
         this.mainBooksResponses = mainBooksResponses;
+    }
+
+    public ArrayList<MainBooksResponse> getSearchedResultBooks() {
+        if (searchedResultBooks == null) {
+            searchedResultBooks = new ArrayList<>();
+        }
+        return searchedResultBooks;
+    }
+
+    public void setSearchedResultBooks(ArrayList<MainBooksResponse> searchedResultBooks) {
+        this.searchedResultBooks = searchedResultBooks;
     }
 }
