@@ -3,8 +3,8 @@
 
     <string name="google_server_oauth2_client_id" translatable="false">21891812757-c3ic4e2kanognt9ilgtnfj99ot25jg0r.apps.googleusercontent.com</string>
 
-    <string name="hint_email">Email</string>
-    <string name="hint_passwlrd">Password</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
     <string name="button_text_login">Log In</string>
     <string name="button_text_google_login">Log In With Google</string>
 
