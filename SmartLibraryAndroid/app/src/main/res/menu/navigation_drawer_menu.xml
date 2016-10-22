@@ -14,6 +14,10 @@
             android:title="@string/drawer_borrowed"/>
 
         <item
+            android:id="@+id/navigation_drawer_menu_scan_book_action"
+            android:title="@string/drawer_scan_book"/>
+
+        <item
             android:id="@+id/navigation_drawer_menu_recommended_action"
             android:title="@string/drawer_recommended"/>
 
@@ -27,7 +31,7 @@
             android:title="@string/drawer_profile"/>
 
         <item
-            android:id="@+id/navigation_drawer_menu_list_view"
+            android:id="@+id/navigation_drawer_menu_settings_action"
             android:title="@string/drawer_settings"/>
     </group>
 </menu>

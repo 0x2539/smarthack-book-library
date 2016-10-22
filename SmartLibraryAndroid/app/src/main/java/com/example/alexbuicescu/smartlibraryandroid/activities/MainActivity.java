@@ -22,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.alexbuicescu.smartlibraryandroid.R;
 import com.example.alexbuicescu.smartlibraryandroid.managers.BooksManager;
@@ -29,6 +30,7 @@ import com.example.alexbuicescu.smartlibraryandroid.pojos.NavigationDrawer;
 import com.example.alexbuicescu.smartlibraryandroid.pojos.eventbus.MainBooksMessage;
 import com.example.alexbuicescu.smartlibraryandroid.pojos.eventbus.SearchMessage;
 import com.example.alexbuicescu.smartlibraryandroid.rest.RestClient;
+import com.example.alexbuicescu.smartlibraryandroid.utils.UserPreferences;
 import com.example.alexbuicescu.smartlibraryandroid.views.BooksListAdapter;
 import com.example.alexbuicescu.smartlibraryandroid.views.SmoothActionBarDrawerToggle;
 
@@ -46,6 +48,7 @@ public class MainActivity extends BaseActivity {
     private AppCompatImageView searchImageView;
     private RelativeLayout searchRelativeLayout;
     private AppCompatImageView searchBackButton;
+    private TextView username;
 //    private MaterialSearchView searchView;
 
     public static final int NAVDRAWER_LAUNCH_DELAY = 100;
@@ -186,6 +189,8 @@ public class MainActivity extends BaseActivity {
                 return false;
             }
         });
+        username = (TextView) navigationView.getHeaderView(0).findViewById(R.id.navigation_drawer_header_layout_name_textview);
+        username.setText("Alex");//UserPreferences.getUsername(MainActivity.this));
         navigationToggle = new SmoothActionBarDrawerToggle(
                 (AppCompatActivity) MainActivity.this,
                 drawerLayout,
@@ -205,7 +210,7 @@ public class MainActivity extends BaseActivity {
             ((AppCompatActivity) MainActivity.this).setSupportActionBar(toolbar);
             ((AppCompatActivity) MainActivity.this).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             ((AppCompatActivity) MainActivity.this).getSupportActionBar().setHomeButtonEnabled(true);
-            ((AppCompatActivity) MainActivity.this).getSupportActionBar().setTitle("");
+            ((AppCompatActivity) MainActivity.this).getSupportActionBar().setTitle("Library");
         }
         catch (Exception e) {
 

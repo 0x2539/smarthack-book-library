@@ -2,6 +2,8 @@ package com.example.alexbuicescu.smartlibraryandroid.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
@@ -112,8 +114,13 @@ public class BookDetailsActivity extends BaseActivity {
             @Override
             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                 // Do whatever you want with Bitmap
+                if (loadedImage == null) {
+                    Drawable drawable = BookDetailsActivity.this.getResources().getDrawable(R.drawable.book_placeholder);
+                    loadedImage = ((BitmapDrawable)drawable).getBitmap();
+                }
                 coverImageViewBlurred.setImageBitmap(BlurBuilder.blur(BookDetailsActivity.this, loadedImage));
                 coverImageView.setImageBitmap(loadedImage);
+
             }
         });
 
