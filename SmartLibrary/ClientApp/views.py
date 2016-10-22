@@ -3,7 +3,7 @@ from functools import partial
 from django.http import HttpResponse
 from django.core.serializers import serialize
 
-from .models import Book, User
+from .models import Book, User, Loan
 from .login_utils import generate_login_token, login_only
 
 
@@ -46,10 +46,13 @@ def login(request):
 
 
 @login_only
-def my_books(request, user_id):
-    return HttpResponse(status=200, content=json.dumps({'lol': 'asd'}))
+def loaned_by(request, user_id):
+    loans = Loan.objects.filter(user_id=user_id)
+    books = [loan.book for loan in loans]
+    return json_response(books)
 
 
+# @login_only
 def book_details(request, id):
     book = Book.objects.get(id=id)
     return json_response([book])

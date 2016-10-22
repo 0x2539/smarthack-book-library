@@ -26,9 +26,12 @@ class Book(models.Model):
 
 
 class Loan(models.Model):
-    user = models.OneToOneField(User)
-    book = models.OneToOneField(Book)
+    user = models.ForeignKey(User)
+    book = models.ForeignKey(Book)
     date = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return '%s - %s'.format(self.user, self.book)
 
 
 class Profile(models.Model):
@@ -94,6 +97,6 @@ def populate():
 
     # Loans
     stefan_lotr = make(Loan, user=stefan, book=lotr)
-    stefan_cormen = make(Loan, user=stefan, book=lotr)
+    stefan_cormen = make(Loan, user=stefan, book=cormen)
 
     alex_got = make(Loan, user=alex, book=got)
