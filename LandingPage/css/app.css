@@ -98,12 +98,12 @@ header {
   min-height: 100%;
 }
 
-.device-container{
+/*.device-container{
   max-width: none;
   max-height: calc(0vh);
   min-width: 600px;
   margin-bottom: 0;
-}
+}*/
 
 #mainNav.affix{
   background-color: var(--dark-primary-color);
