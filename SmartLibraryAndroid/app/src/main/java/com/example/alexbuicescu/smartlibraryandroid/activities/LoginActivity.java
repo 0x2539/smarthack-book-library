@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +13,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.alexbuicescu.smartlibraryandroid.R;
+import com.example.alexbuicescu.smartlibraryandroid.pojos.eventbus.LoginMessage;
+import com.example.alexbuicescu.smartlibraryandroid.rest.RestClient;
+import com.example.alexbuicescu.smartlibraryandroid.rest.requests.LoginRequest;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
@@ -21,13 +23,15 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 
-public class LoginActivity extends AppCompatActivity {
+import org.greenrobot.eventbus.Subscribe;
+
+public class LoginActivity extends BaseActivity {
 
     private final int RC_SIGN_IN = 99;
 
     private GoogleApiClient mGoogleApiClient;
     
-    private EditText emailEditText;
+    private EditText usernameEditText;
     private EditText passwordEditText;
     private Button googleLoginButton;
     private Button LoginButton;
@@ -42,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initLayout() {
-        emailEditText = (EditText) findViewById(R.id.activity_login_email_edittext);
+        usernameEditText = (EditText) findViewById(R.id.activity_login_username_edittext);
         passwordEditText = (EditText) findViewById(R.id.activity_login_password_edittext);
 
         googleLoginButton = (Button) findViewById(R.id.activity_login_google_button);
@@ -57,6 +61,12 @@ public class LoginActivity extends AppCompatActivity {
         googleLoginButton.setCompoundDrawablesWithIntrinsicBounds(googleDrawable, null, null, null);
 
         LoginButton = (Button) findViewById(R.id.activity_login_login_button);
+        LoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doLogin(usernameEditText.getText().toString(), passwordEditText.getText().toString());
+            }
+        });
     }
 
     private void initSocialMediaLogin() {
@@ -113,8 +123,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
-            String userId = result.getSignInAccount().getId();
-            Log.i(TAG, "handleSignInResult google login id: " + userId);
+            String googleUserId = result.getSignInAccount().getId();
+            Log.i(TAG, "handleSignInResult google login id: " + googleUserId);
+            doLogin(googleUserId);
         } else {
             // Signed out, show unauthenticated UI.
             Toast.makeText(LoginActivity.this, "Failed to login with google", Toast.LENGTH_SHORT).show();
@@ -130,5 +141,18 @@ public class LoginActivity extends AppCompatActivity {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
         }
+    }
+
+    @Subscribe
+    public void onEvent(LoginMessage message) {
+        Log.i(TAG, "onEvent: " + message.isSuccess());
+    }
+
+    private void doLogin(String username, String password) {
+        RestClient.getInstance().LOGIN_CALL(new LoginRequest(username, password));
+    }
+
+    private void doLogin(String googleUserId) {
+        RestClient.getInstance().LOGIN_CALL(new LoginRequest(googleUserId));
     }
 }

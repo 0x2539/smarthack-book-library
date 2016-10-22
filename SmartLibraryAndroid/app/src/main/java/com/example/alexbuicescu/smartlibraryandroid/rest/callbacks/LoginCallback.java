@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.alexbuicescu.smartlibraryandroid.pojos.eventbus.LoginMessage;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.LoginRequest;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.LoginResponse;
+import com.example.alexbuicescu.smartlibraryandroid.utils.UserPreferences;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -26,6 +27,7 @@ public class LoginCallback extends HttpCallbackCustom<LoginRequest, LoginRespons
     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
         if (onResponseBase(response)) {
+            UserPreferences.setLoginToken(getContext(), response.body().getToken());
 
             EventBus.getDefault().post(new LoginMessage(true));
         } else {
