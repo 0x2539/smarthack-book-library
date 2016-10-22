@@ -87,3 +87,12 @@ To play with DB objects:
 >>> bad_book.delete()  # remove
 ```
 
+
+
+Web interface:
+
+1. Access [0.0.0.0:5728](http://0.0.0.0:5728).
+
+2. user `admin`, password `adminadmin`
+
+   ​
