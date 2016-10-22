@@ -2,12 +2,16 @@ package com.example.alexbuicescu.smartlibraryandroid.rest;
 
 import android.content.Context;
 
+import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.BorrowedCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.LoginCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.MainBooksCallback;
+import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.SearchCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.EmptyRequest;
+import com.example.alexbuicescu.smartlibraryandroid.rest.requests.LoggedInRequest;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.LoginRequest;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.LoginResponse;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.MainBooksResponse;
+import com.example.alexbuicescu.smartlibraryandroid.utils.UserPreferences;
 
 import java.util.ArrayList;
 
@@ -69,6 +73,21 @@ public class RestClient {
         Call<ArrayList<MainBooksResponse>> call = getApiService().BOOKS_CALL();
         //asynchronous call
         call.enqueue(new MainBooksCallback(context, new EmptyRequest()));
+    }
+
+    public void BORROWED_CALL() {
+        LoggedInRequest request = new LoggedInRequest(UserPreferences.getLoginToken(context));
+        Call<ArrayList<MainBooksResponse>> call = getApiService().BORROWED_CALL(request);
+        //asynchronous call
+        call.enqueue(new BorrowedCallback(context, request));
+    }
+
+    public void SEARCH_CALL(String searchQuery) {
+        searchQuery = searchQuery.replace(' ', '_');
+
+        Call<ArrayList<MainBooksResponse>> call = getApiService().SEARCH_CALL(searchQuery);
+        //asynchronous call
+        call.enqueue(new SearchCallback(context, new EmptyRequest()));
     }
 
     private void setContext(Context context) {

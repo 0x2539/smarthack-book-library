@@ -17,6 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.MainActivity" android:theme="@style/MainActivityTheme"></activity>
+        <activity android:name=".activities.BorrowedActivity"></activity>
+
     </application>
 
 </manifest>

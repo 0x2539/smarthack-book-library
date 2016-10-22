@@ -9,11 +9,66 @@ public class Book {
     @SerializedName("title")
     private String title;
 
+    @SerializedName("author")
+    private String author;
+
+    @SerializedName("description")
+    private String description;
+
+    @SerializedName("release_date")
+    private String releaseDate;
+
+    @SerializedName("cover_url")
+    private String coverUrl;
+
+    @SerializedName("genre")
+    private BookGenreEnum genre;
+
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public String getCoverUrl() {
+        return coverUrl;
+    }
+
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
+    }
+
+    public BookGenreEnum getGenre() {
+        return genre;
+    }
+
+    public void setGenre(BookGenreEnum genre) {
+        this.genre = genre;
     }
 }

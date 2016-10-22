@@ -12,5 +12,6 @@
     <color name="black">#000000</color>
     <color name="grey_half">#777777</color>
 
-    <color name="google_button_text_color">#C9000000</color> <!--54% opacity black-->
+    <color name="google_button_text_color">#C9000000</color>
+    <color name="transparent">#00000000</color> <!--54% opacity black-->
 </resources>

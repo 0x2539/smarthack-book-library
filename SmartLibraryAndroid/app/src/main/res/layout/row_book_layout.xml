@@ -16,17 +16,36 @@
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         card_view:cardCornerRadius="4dp"
-        card_view:contentPadding="@dimen/activity_horizontal_margin">
+        card_view:contentPadding="@dimen/activity_horizontal_margin"
+        android:foreground="?attr/selectableItemBackground"
+        android:background="@color/white">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="100dp">
 
             <TextView
                 android:id="@+id/row_book_layout_title_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/row_book_layout_author_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/row_book_layout_title_textview"
+                android:layout_marginTop="8dp"
+                android:text="@string/book_author"
+                android:textColor="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/row_book_layout_year_genre_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="@string/book_year_genre"
                 android:textColor="@color/black" />
 
             <android.support.v7.widget.AppCompatImageView

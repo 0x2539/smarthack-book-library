@@ -69,5 +69,4 @@
         <item name="android:listDivider">@color/colorDivider</item>
         <item name="android:textColorSecondary">@color/grey_half</item>
     </style>
-
 </resources>
