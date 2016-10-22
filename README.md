@@ -3,7 +3,7 @@ This is the project for the smarthack hackathon (online book library)
 
 
 
-## Installation
+## Install
 
 Backend:
 
