@@ -2,6 +2,7 @@ package com.example.alexbuicescu.smartlibraryandroid.managers;
 
 import com.example.alexbuicescu.smartlibraryandroid.pojos.Book;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.MainBooksResponse;
+import com.example.alexbuicescu.smartlibraryandroid.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -41,7 +42,7 @@ public class BooksManager {
     }
 
     public void setSearchedResultBooks(ArrayList<MainBooksResponse> searchedResultBooks) {
-        this.searchedResultBooks = searchedResultBooks;
+        this.searchedResultBooks = updateDueSoon(searchedResultBooks);
     }
 
     public ArrayList<MainBooksResponse> getBorrowedBooks() {
@@ -52,7 +53,7 @@ public class BooksManager {
     }
 
     public void setBorrowedBooks(ArrayList<MainBooksResponse> borrowedBooks) {
-        this.borrowedBooks = borrowedBooks;
+        this.borrowedBooks = updateDueSoon(borrowedBooks);
     }
 
     public ArrayList<MainBooksResponse> getRecommendedBooks() {
@@ -63,6 +64,18 @@ public class BooksManager {
     }
 
     public void setRecommendedBooks(ArrayList<MainBooksResponse> recommendedBooks) {
-        this.recommendedBooks = recommendedBooks;
+        this.recommendedBooks = updateDueSoon(recommendedBooks);
+    }
+
+    private ArrayList<MainBooksResponse> updateDueSoon(ArrayList<MainBooksResponse> books) {
+        if (books == null) {
+            return null;
+        }
+        ArrayList<MainBooksResponse> newBooks = new ArrayList<>();
+        for (MainBooksResponse book : books) {
+            book.getBook().setDueSoon(Utils.isDateSoon(book.getBook().getReturnDate()));
+            newBooks.add(book);
+        }
+        return newBooks;
     }
 }

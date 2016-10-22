@@ -98,6 +98,16 @@
                         android:text="@string/book_extend_period"
                         android:visibility="gone" />
 
+                    <Button
+                        android:id="@+id/activity_book_details_read_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:enabled="false"
+                        android:text="@string/book_read"
+                        android:theme="@style/UnavailableButton"
+                        android:visibility="gone" />
+
                 </RelativeLayout>
 
                 <TextView

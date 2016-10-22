@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.alexbuicescu.smartlibraryandroid.R;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.MainBooksResponse;
+import com.example.alexbuicescu.smartlibraryandroid.utils.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -66,6 +67,8 @@ public class BooksListAdapter extends BaseAdapter {
             holder.titleTextView = (TextView) convertView.findViewById(R.id.row_book_layout_title_textview);
             holder.authorTextView = (TextView) convertView.findViewById(R.id.row_book_layout_author_textview);
             holder.yearGenreTextView = (TextView) convertView.findViewById(R.id.row_book_layout_year_genre_textview);
+            holder.dueSoonTextView = (TextView) convertView.findViewById(R.id.row_book_layout_due_soon_textview);
+            holder.readTextView = (TextView) convertView.findViewById(R.id.row_book_layout_read_textview);
             holder.coverImageView = (AppCompatImageView) convertView.findViewById(R.id.row_book_layout_cover_imageview);
             convertView.setTag(holder);
         } else {
@@ -82,6 +85,16 @@ public class BooksListAdapter extends BaseAdapter {
                 )
         );
         ImageLoader.getInstance().displayImage(currentItems.get(position).getBook().getCoverUrl(), holder.coverImageView);
+
+        holder.dueSoonTextView.setVisibility(View.GONE);
+        holder.readTextView.setVisibility(View.GONE);
+
+        if (currentItems.get(position).getBook().isDueSoon()) {
+            holder.dueSoonTextView.setVisibility(View.VISIBLE);
+        }
+        if (Utils.isDateSoon(currentItems.get(position).getBook().getReturnDate())) {
+            holder.readTextView.setVisibility(View.VISIBLE);
+        }
 //        ImageLoader.getInstance().displayImage("http://www.proprofs.com/quiz-school/topic_images/p19c7ebf8va58mc51mdqteg14453.jpg", holder.coverImageView);
 
         return convertView;
@@ -105,6 +118,8 @@ public class BooksListAdapter extends BaseAdapter {
         TextView titleTextView;
         TextView authorTextView;
         TextView yearGenreTextView;
+        TextView dueSoonTextView;
+        TextView readTextView;
         AppCompatImageView coverImageView;
     }
 }
