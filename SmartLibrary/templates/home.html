@@ -5,6 +5,12 @@
   <title>Title</title>
 </head>
 <body>
-  hello world
+  books:
+  <ul>
+    {% for book in books %}
+      <li>{{ book.title }}</li>
+    {% endfor %}
+  </ul>
+
 </body>
 </html>

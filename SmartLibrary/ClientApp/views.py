@@ -1,5 +1,11 @@
 from django.shortcuts import render
 
+from .models import Book
+
 
 def home(request):
-    return render(request, 'home.html')
+    books = Book.objects.all()
+    print(books)
+    return render(request, 'home.html', context={
+        'books': books
+    })
