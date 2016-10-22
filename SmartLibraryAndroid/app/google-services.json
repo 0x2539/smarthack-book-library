@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "588518658086",
+    "firebase_url": "https://smarthack-smartlibrary.firebaseio.com",
+    "project_id": "smarthack-smartlibrary",
+    "storage_bucket": "smarthack-smartlibrary.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588518658086:android:72f98ca473a189c5",
+        "android_client_info": {
+          "package_name": "com.example.alexbuicescu.smartlibraryandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "588518658086-siccslqm0s4rr74gvq2fhdtl0lu396eu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alexbuicescu.smartlibraryandroid",
+            "certificate_hash": "407A1A066E364943A9452B3FA606713D6BD4B397"
+          }
+        },
+        {
+          "client_id": "588518658086-gse1kuj1p7c3hok0fepeg45tbg9s1m5s.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "588518658086-8ggivbstr3pvkse1iofbnrek9t20tmqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkeWna2Vdvqi-LX9b1OEhj7gtmksWiRTY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "588518658086-gse1kuj1p7c3hok0fepeg45tbg9s1m5s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
