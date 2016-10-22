@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from django.db import models
+from datetime import datetime
 
 
 class Book(models.Model):
@@ -19,4 +20,8 @@ class Book(models.Model):
     genre = models.CharField(choices=GENRES, max_length=16)
 
 
-# if __name__ == '__main__':
+def populate():
+    Book.objects.create(title='Lord of the Rings', description='Book with dwarfs and elves',
+                        release_date=datetime(day=24, month=1, year=1994), genre='Fan').save()
+    Book.objects.create(title='Star Wars', description='Jedis and Siths',
+                        release_date=datetime(day=31, month=8, year=1994), genre='SF').save()

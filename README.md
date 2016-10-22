@@ -33,6 +33,19 @@ After updating models, run this beforehand:
 ./manage.py makemigrations
 ```
 
+Populate the DB:
+
+```bash
+./manage.py shell
+```
+
+```python
+from Backend.models import *
+populate()
+```
+
+
+
 
 
 ## Run
