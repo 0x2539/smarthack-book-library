@@ -17,6 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.MainActivity" android:theme="@style/MainActivityTheme"></activity>
+        <activity android:name=".activities.BorrowedActivity"></activity>
+        <activity android:name=".activities.BookDetailsActivity"></activity>
+        <activity android:name=".activities.ScanBookActivity"></activity>
+
     </application>
 
 </manifest>

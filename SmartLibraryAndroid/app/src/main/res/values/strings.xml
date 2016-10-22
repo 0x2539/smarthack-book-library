@@ -9,6 +9,7 @@
     <string name="button_text_google_login">Log In With Google</string>
     
     <string name="drawer_main_screen">Home</string>
+    <string name="drawer_scan_book">Scan Book</string>
     <string name="drawer_borrowed">Borrowed</string>
     <string name="drawer_recommended">Recommended</string>
     <string name="drawer_profile">Profile</string>
@@ -16,5 +17,17 @@
 
     <string name="cancel_action">Cancel</string>
     <string name="save_action">Save</string>
+    <string name="search_hint">Search</string>
+
+    <string name="book_author">by %1$s</string>
+    <string name="book_year_genre">%1$s | %2$s</string>
+
+    <string name="borrow_book_button">Borrow</string>
+    <string name="book_extend_period">Extend Period</string>
+
+    <string name="recommendations">Loaned together</string>
+    <string name="deadline">Deadline</string>
+
+    <string name="scan_book">Scan your book</string>
 
 </resources>

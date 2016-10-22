@@ -27,5 +27,7 @@ urlpatterns = [
 
     url(r'^api/login', views.login, name='login'),
     url(r'^api/loaned_by', views.loaned_by, name='loaned by'),
-    url(r'^api/book_details/(?P<id>\d+)/?$', views.book_details, name='book details'),
+    url(r'^api/loaned_together_with/(?P<book_id>\d+)/?$', views.loaned_together_with, name='loaned together with'),
+    url(r'^api/loan_date/(?P<book_id>\d+)/?$', views.loan_date, name='loan date'),
+    url(r'^api/place_loan/(?P<book_id>\d+)/?$', views.place_loan, name='place loan'),
 ]

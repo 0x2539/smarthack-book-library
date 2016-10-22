@@ -28,6 +28,7 @@ public class LoginCallback extends HttpCallbackCustom<LoginRequest, LoginRespons
 
         if (onResponseBase(response)) {
             UserPreferences.setLoginToken(getContext(), response.body().getToken());
+            UserPreferences.setUsername(getContext(), response.body().getUsername());
 
             EventBus.getDefault().post(new LoginMessage(true));
         } else {

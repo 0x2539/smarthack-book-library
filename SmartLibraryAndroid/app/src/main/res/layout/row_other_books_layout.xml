@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/row_other_books_clickable_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground"
+        android:background="@color/white"
+        android:padding="8dp"
+        android:clickable="true">
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/row_other_books_layout_imageview"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"/>
+    </RelativeLayout>
+</LinearLayout>

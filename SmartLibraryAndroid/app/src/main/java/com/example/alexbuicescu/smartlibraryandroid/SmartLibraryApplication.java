@@ -31,6 +31,8 @@ public class SmartLibraryApplication extends Application {
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .showImageOnLoading(R.drawable.white_bg)//display stub image until image is loaded
+                .showImageOnFail(R.drawable.book_placeholder)
+                .showImageForEmptyUri(R.drawable.book_placeholder)
 //                .displayer(new RoundedBitmapDisplayer(20))
                 .build();
 

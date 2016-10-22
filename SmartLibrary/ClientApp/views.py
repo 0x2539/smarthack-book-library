@@ -1,6 +1,7 @@
 import json
+from datetime import timedelta
 from functools import partial
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.core.serializers import serialize
 from django.db.models import Q
 
@@ -24,6 +25,7 @@ def books(request):
 
 
 def search(request, terms):
+    terms = terms.replace('_', ' ')
     results = Book.objects.filter(
       Q(title__contains=terms) |
       Q(author__contains=terms) |
@@ -51,7 +53,7 @@ def login(request):
         return HttpResponse(status=400, content='User & Password or Google ID not specified/incorrect')
 
     token = generate_login_token(user.id)
-    token_json = json.dumps({'token': token})
+    token_json = json.dumps({'token': token, 'username': user.username})
 
     return HttpResponse(status=200, content=token_json)
 
@@ -63,7 +65,40 @@ def loaned_by(request, user_id):
     return json_response(books)
 
 
-# @login_only
-def book_details(request, id):
-    book = Book.objects.get(id=id)
-    return json_response([book])
+def loaned_together_with(request, book_id):
+    book = Book.objects.get(id=book_id)
+    return json_response(book.loaned_together())
+
+
+@login_only
+def loan_date(request, user_id, book_id):
+    try:
+        loan = Loan.objects.get(
+            Q(user_id=user_id) &
+            Q(book_id=book_id)
+        )
+    except:
+        return JsonResponse({'date': None})
+
+    return JsonResponse({'date': loan.return_date.strftime('%-d %b %Y')})
+
+
+@login_only
+def place_loan(request, user_id, book_id):
+    user = User.objects.get(id=user_id)
+    book = Book.objects.get(id=book_id)
+
+    try:
+        # Loan already exists, extend its period
+        loan = Loan.objects.get(user=user, book=book)
+        loan.return_date += timedelta(days=30)
+        loan.save()
+    except:
+        # Loan doesn't exit, create it now
+        loan = Loan.objects.create(
+            user=user,
+            book=book
+        )
+        loan.save()
+
+    return HttpResponse(status=200, content=json.dumps({}))

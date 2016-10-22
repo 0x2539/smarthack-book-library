@@ -1,8 +1,11 @@
 #!/usr/bin/env python
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.db import models
 from django.contrib.auth.models import User
+from itertools import chain
 from django.db.models.signals import post_save
+
+join_querysets = lambda sets: set(chain(*sets))
 
 
 class Book(models.Model):
@@ -24,20 +27,36 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+    def loaners(self):
+        loans = Loan.objects.filter(book=self)
+        return [loan.user for loan in loans]
+
+    def loaned_together(self):
+        loans = Loan.objects.filter(book=self)
+        loans_around = [loan.user.profile.loaned_around(loan.start_date) for loan in loans]
+        return join_querysets(loans_around) - {self}
+
 
 class Loan(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, related_name='loans')
     book = models.ForeignKey(Book)
-    date = models.DateField(auto_now=True)
+    start_date = models.DateTimeField(default=datetime.now)
+    return_date = models.DateTimeField(default=lambda: datetime.now() + timedelta(days=30))
 
     def __str__(self):
-        return '%s - %s'.format(self.user, self.book)
+        return '%s - %s' % (self.user, self.book)
 
 
 class Profile(models.Model):
     # access like: request.user.profile.google_id
     user = models.OneToOneField(User)
     google_id = models.CharField(max_length=64)
+
+    def loaned_around(self, date):
+        before = date - timedelta(minutes=10)
+        after  = date + timedelta(minutes=10)
+        loans = self.user.loans.filter(start_date__range=[before, after])
+        return [loan.book for loan in loans]
 
 
 def create_user_profile(sender, instance, created, **kwargs):
@@ -86,17 +105,32 @@ def populate():
                genre='Fan'
                )
 
+    swift = make(Book,
+                 title='The Swift Porgramming Language',
+                 author='Apple Inc',
+                 description='Swift is a programming language for creating iOS, macOS, watchOS, and tvOS apps. Swift builds on the best of C and Objective-C, without the constraints of C compatibility.',
+                 release_date=datetime(day=2, month=6, year=2014),
+                 genre='Prog'
+                 )
+
     # Users
     stefan = make(User,
                   username='stefan',
                   password='parola123')
-
     alex = make(User,
                 username='alex',
                 password='parola123')
 
-    # Loans
-    stefan_lotr = make(Loan, user=stefan, book=lotr)
-    stefan_cormen = make(Loan, user=stefan, book=cormen)
+    ade = make(User,
+               username='ade',
+               password='parola123')
 
-    alex_got = make(Loan, user=alex, book=got)
+    # Loans
+    stefan_lotr = make(Loan, user=stefan, book=lotr, start_date=datetime(day=22, month=10, year=2016, hour=19, minute=30))
+    stefan_sw = make(Loan, user=stefan, book=sw, start_date=datetime(day=22, month=10, year=2016, hour=19, minute=35))
+    stefan_cormen = make(Loan, user=stefan, book=cormen, start_date=datetime(day=22, month=2, year=2016, hour=10, minute=0))
+
+    alex_lotr = make(Loan, user=alex, book=lotr, start_date=datetime(day=22, month=10, year=2016, hour=18, minute=10))
+    alex_got = make(Loan, user=alex, book=got, start_date=datetime(day=22, month=10, year=2016, hour=18, minute=11))
+
+    ade_swift = make(Loan, user=ade, book=swift, start_date=datetime(day=5, month=6, year=2016, hour=12, minute=0))

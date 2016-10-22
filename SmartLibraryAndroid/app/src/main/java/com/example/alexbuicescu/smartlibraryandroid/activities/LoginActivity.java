@@ -47,6 +47,7 @@ public class LoginActivity extends BaseActivity {
         if(UserPreferences.isUserLoggedIn(LoginActivity.this)) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
+            finish();
             return;
         }
 
@@ -82,8 +83,8 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void initToolbar() {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     private void initSocialMediaLogin() {
@@ -163,9 +164,15 @@ public class LoginActivity extends BaseActivity {
     @Subscribe
     public void onEvent(LoginMessage message) {
         Log.i(TAG, "onEvent: " + message.isSuccess());
+        if(UserPreferences.isUserLoggedIn(LoginActivity.this)) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     private void doLogin(String username, String password) {
+        Log.i(TAG, "doLogin: " + username + " " + password);
         RestClient.getInstance(LoginActivity.this).LOGIN_CALL(new LoginRequest(username, password));
     }
 
