@@ -40,7 +40,7 @@ Populate the DB:
 ```
 
 ```python
-from Backend.models import *
+from ClientApp.models import *
 populate()
 ```
 
