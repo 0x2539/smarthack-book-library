@@ -19,6 +19,9 @@ class Book(models.Model):
     # Example query: Book.objects.filter(genre='SF')
     genre = models.CharField(choices=GENRES, max_length=16)
 
+    def __str__(self):
+        return self.title
+
 
 def populate():
     Book.objects.create(title='Lord of the Rings', description='Book with dwarfs and elves',
