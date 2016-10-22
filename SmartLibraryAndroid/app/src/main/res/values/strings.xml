@@ -21,4 +21,9 @@
     <string name="book_author">by %1$s</string>
     <string name="book_year_genre">%1$s %2$s</string>
 
+    <string name="borrow_book_button">Borrow</string>
+    <string name="book_already_borrowed_button">Already Borrowed</string>
+
+    <string name="recommendations">Recommandations</string>
+
 </resources>

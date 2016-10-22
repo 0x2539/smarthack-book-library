@@ -22,7 +22,7 @@ public class BooksListAdapter extends BaseAdapter {
 
     private LayoutInflater layoutInflater;
 
-    private List<MainBooksResponse> currentItems;
+    private ArrayList<MainBooksResponse> currentItems;
 
     private Context context;
 
@@ -44,6 +44,10 @@ public class BooksListAdapter extends BaseAdapter {
     @Override
     public Object getItem(int position) {
         return currentItems.get(position);
+    }
+
+    public ArrayList<MainBooksResponse> getCurrentItems() {
+        return currentItems;
     }
 
     @Override

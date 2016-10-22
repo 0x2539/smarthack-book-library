@@ -3,12 +3,15 @@ package com.example.alexbuicescu.smartlibraryandroid.rest;
 import android.content.Context;
 
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.BorrowedCallback;
+import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.LoanDateCallback;
+import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.LoanedTogetherWithCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.LoginCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.MainBooksCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.SearchCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.EmptyRequest;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.LoggedInRequest;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.LoginRequest;
+import com.example.alexbuicescu.smartlibraryandroid.rest.responses.LoanDateResponse;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.LoginResponse;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.MainBooksResponse;
 import com.example.alexbuicescu.smartlibraryandroid.utils.UserPreferences;
@@ -88,6 +91,20 @@ public class RestClient {
         Call<ArrayList<MainBooksResponse>> call = getApiService().SEARCH_CALL(searchQuery);
         //asynchronous call
         call.enqueue(new SearchCallback(context, new EmptyRequest()));
+    }
+
+    public void LOANED_TOGETHER_WITH_CALL(long bookId) {
+
+        Call<ArrayList<MainBooksResponse>> call = getApiService().LOANED_TOGETHER_WITH_CALL(bookId);
+        //asynchronous call
+        call.enqueue(new LoanedTogetherWithCallback(context, new EmptyRequest()));
+    }
+
+    public void LOAN_DATE_CALL(long bookId) {
+
+        Call<LoanDateResponse> call = getApiService().LOAN_DATE_CALL(bookId);
+        //asynchronous call
+        call.enqueue(new LoanDateCallback(context, new EmptyRequest()));
     }
 
     private void setContext(Context context) {

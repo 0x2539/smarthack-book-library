@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -107,6 +108,14 @@ public class MainActivity extends BaseActivity {
         booksAdapter = new BooksListAdapter(MainActivity.this);
         booksListView = (ListView) findViewById(R.id.activity_main_all_books_listview);
         booksListView.setAdapter(booksAdapter);
+        booksListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this, BookDetailsActivity.class);
+                intent.putExtra(BookDetailsActivity.KEY_BOOK_ID, booksAdapter.getCurrentItems().get(position).getBookId());
+                MainActivity.this.startActivity(intent);
+            }
+        });
     }
 
     private void hideSearch() {

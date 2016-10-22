@@ -2,6 +2,7 @@ package com.example.alexbuicescu.smartlibraryandroid.rest;
 
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.LoggedInRequest;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.LoginRequest;
+import com.example.alexbuicescu.smartlibraryandroid.rest.responses.LoanDateResponse;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.LoginResponse;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.MainBooksResponse;
 
@@ -35,6 +36,16 @@ public interface RestAPI {
     @GET("search/{search_query}")
     Call<ArrayList<MainBooksResponse>> SEARCH_CALL(
             @Path("search_query") String searchQuery
+    );
+
+    @GET("loaned_together_with/{book_id}")
+    Call<ArrayList<MainBooksResponse>> LOANED_TOGETHER_WITH_CALL(
+            @Path("book_id") long bookId
+    );
+
+    @GET("loan_date/{book_id}")
+    Call<LoanDateResponse> LOAN_DATE_CALL(
+            @Path("book_id") long bookId
     );
 
 }
