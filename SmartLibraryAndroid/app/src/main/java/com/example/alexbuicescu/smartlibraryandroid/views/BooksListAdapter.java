@@ -2,13 +2,10 @@ package com.example.alexbuicescu.smartlibraryandroid.views;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.alexbuicescu.smartlibraryandroid.R;
@@ -63,6 +60,8 @@ public class BooksListAdapter extends BaseAdapter {
 
             holder = new ViewHolder();
             holder.titleTextView = (TextView) convertView.findViewById(R.id.row_book_layout_title_textview);
+            holder.authorTextView = (TextView) convertView.findViewById(R.id.row_book_layout_author_textview);
+            holder.yearGenreTextView = (TextView) convertView.findViewById(R.id.row_book_layout_year_genre_textview);
             holder.coverImageView = (AppCompatImageView) convertView.findViewById(R.id.row_book_layout_cover_imageview);
             convertView.setTag(holder);
         } else {
@@ -70,6 +69,14 @@ public class BooksListAdapter extends BaseAdapter {
         }
 
         holder.titleTextView.setText(currentItems.get(position).getBook().getTitle());
+        holder.authorTextView.setText(getContext().getResources().getString(R.string.book_author, currentItems.get(position).getBook().getAuthor()));
+        holder.yearGenreTextView.setText(
+                getContext().getResources().getString(
+                        R.string.book_year_genre,
+                        currentItems.get(position).getBook().getReleaseDate().substring(0, 4),
+                        currentItems.get(position).getBook().getGenre().toString()
+                )
+        );
         ImageLoader.getInstance().displayImage(currentItems.get(position).getBook().getCoverUrl(), holder.coverImageView);
 //        ImageLoader.getInstance().displayImage("http://www.proprofs.com/quiz-school/topic_images/p19c7ebf8va58mc51mdqteg14453.jpg", holder.coverImageView);
 
@@ -92,6 +99,8 @@ public class BooksListAdapter extends BaseAdapter {
 
     private static class ViewHolder {
         TextView titleTextView;
+        TextView authorTextView;
+        TextView yearGenreTextView;
         AppCompatImageView coverImageView;
     }
 }

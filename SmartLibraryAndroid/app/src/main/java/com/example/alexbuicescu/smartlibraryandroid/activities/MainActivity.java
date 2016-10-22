@@ -1,5 +1,6 @@
 package com.example.alexbuicescu.smartlibraryandroid.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -28,7 +30,6 @@ import com.example.alexbuicescu.smartlibraryandroid.pojos.eventbus.SearchMessage
 import com.example.alexbuicescu.smartlibraryandroid.rest.RestClient;
 import com.example.alexbuicescu.smartlibraryandroid.views.BooksListAdapter;
 import com.example.alexbuicescu.smartlibraryandroid.views.SmoothActionBarDrawerToggle;
-import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -109,6 +110,9 @@ public class MainActivity extends BaseActivity {
     }
 
     private void hideSearch() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(booksListView.getWindowToken(), 0);
+
         Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.alpha_full_to_none);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -132,6 +136,11 @@ public class MainActivity extends BaseActivity {
     }
 
     private void showSearch() {
+        searchEditText.requestFocus();
+        EditText yourEditText= (EditText) findViewById(R.id.activity_main_search_edittext);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(yourEditText, InputMethodManager.SHOW_IMPLICIT);
+
         Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.alpha_none_to_full);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -141,7 +150,6 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                searchEditText.requestFocus();
             }
 
             @Override
@@ -231,6 +239,16 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (searchEditText.getText().toString().equals("")) {
+            super.onBackPressed();
+        }
+        else {
+            hideSearch();
+        }
+    }
+
     @Subscribe
     public void onEvent(MainBooksMessage message) {
         Log.i(TAG, "onEvent MainBooksMessage: " + message.isSuccess());
@@ -238,21 +256,6 @@ public class MainActivity extends BaseActivity {
             booksAdapter.setCurrentItems(BooksManager.getInstance().getMainBooksResponses());
             Log.i(TAG, "onEvent: " + BooksManager.getInstance().getMainBooksResponses().size());
         }
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == MaterialSearchView.REQUEST_VOICE && resultCode == RESULT_OK) {
-//            ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-//            if (matches != null && matches.size() > 0) {
-//                String searchWrd = matches.get(0);
-//                if (!TextUtils.isEmpty(searchWrd)) {
-//                    searchView.setQuery(searchWrd, false);
-//                }
-//            }
-
-            return;
-        }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Subscribe
