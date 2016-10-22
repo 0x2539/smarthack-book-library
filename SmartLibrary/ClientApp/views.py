@@ -2,6 +2,7 @@ import json
 from functools import partial
 from django.http import HttpResponse
 from django.core.serializers import serialize
+from django.db.models import Q
 
 from .models import Book, User, Loan
 from .login_utils import generate_login_token, login_only
@@ -20,6 +21,16 @@ def home(request):
 
 def books(request):
     return json_response(Book.objects.all())
+
+
+def search(request, terms):
+    results = Book.objects.filter(
+      Q(title__contains=terms) |
+      Q(author__contains=terms) |
+      Q(description__contains=terms) |
+      Q(genre__contains=terms)
+    )
+    return json_response(results)
 
 
 def login(request):

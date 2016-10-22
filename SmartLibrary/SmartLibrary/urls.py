@@ -23,8 +23,9 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
 
     url(r'^api/books', views.books, name='books'),
-    url(r'^api/login', views.login, name='login'),
+    url(r'^api/search/(?P<terms>\w{3,100})/?$', views.search, name='search'),
 
+    url(r'^api/login', views.login, name='login'),
     url(r'^api/loaned_by', views.loaned_by, name='loaned by'),
-    url(r'api/book_details/(?P<id>\d+)/?$', views.book_details, name='book details'),
+    url(r'^api/book_details/(?P<id>\d+)/?$', views.book_details, name='book details'),
 ]
