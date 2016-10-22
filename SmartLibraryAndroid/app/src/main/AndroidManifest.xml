@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.alexbuicescu.smartlibraryandroid">
 
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+
     <application
         android:name=".SmartLibraryApplication"
         android:allowBackup="true"
@@ -19,7 +25,21 @@
         <activity android:name=".activities.MainActivity" android:theme="@style/MainActivityTheme"></activity>
         <activity android:name=".activities.BorrowedActivity"></activity>
         <activity android:name=".activities.BookDetailsActivity"></activity>
-        <activity android:name=".activities.ScanBookActivity"></activity>
+        <activity android:name=".activities.ScanBookActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.nfc.action.TECH_DISCOVERED"
+                android:resource="@xml/nfc_tech_filter" />
+        </activity>
 
     </application>
 
