@@ -46,7 +46,7 @@ def login(request):
 
 
 @login_only
-def my_books(request):
+def my_books(request, user_id):
     return HttpResponse(status=200, content=json.dumps({'lol': 'asd'}))
 
 

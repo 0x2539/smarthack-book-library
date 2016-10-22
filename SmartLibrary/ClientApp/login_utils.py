@@ -32,8 +32,9 @@ def login_only(api_function):
         body = request_to_dict(request)
         token = body.get('token', None)
 
-        if decode_token(token):
-            return api_function(request, *args, **kwargs)
+        user_id = decode_token(token)
+        if user_id:
+            return api_function(request, user_id, *args, **kwargs)
 
         return HttpResponse(status=400, content=json.dumps({'error': 'LOGIN_INVALID'}))
 

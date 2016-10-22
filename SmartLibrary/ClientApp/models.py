@@ -46,37 +46,54 @@ post_save.connect(create_user_profile, sender=User)
 
 
 def populate():
+    def make(model, **kwargs):
+        obj, created = model.objects.get_or_create(**kwargs)
+        obj.save()
+        return obj
+
     # Books
-    lotr = Book.objects.create(
-        title='Lord of the Rings',
-        author='JRR Tolkein',
-        description='Book with dwarfs and elves',
-        release_date=datetime(day=24, month=1, year=1994),
-        cover_url='http://cdn.collider.com/wp-content/uploads/2016/07/the-lord-of-the-rings-book-cover.jpg',
-        genre='Fan')
-    lotr.save()
+    lotr = make(Book,
+                title='Lord of the Rings',
+                author='JRR Tolkein',
+                description='Book with dwarfs and elves',
+                release_date=datetime(day=24, month=1, year=1994),
+                cover_url='http://cdn.collider.com/wp-content/uploads/2016/07/the-lord-of-the-rings-book-cover.jpg',
+                genre='Fan')
 
-    sw = Book.objects.create(
-        title='Star Wars',
-        author='George Lucas',
-        description='Jedis and Siths',
-        release_date=datetime(day=31, month=8, year=1994),
-        cover_url='https://s-media-cache-ak0.pinimg.com/originals/16/86/be/1686bee733af0dbccd952ea34e4955d3.jpg',
-        genre='SF')
-    sw.save()
+    sw = make(Book,
+              title='Star Wars',
+              author='George Lucas',
+              description='Jedis and Siths',
+              release_date=datetime(day=31, month=8, year=1994),
+              cover_url='https://s-media-cache-ak0.pinimg.com/originals/16/86/be/1686bee733af0dbccd952ea34e4955d3.jpg',
+              genre='SF')
 
-    cormen = Book.objects.create(
-        title=''
-    )
+    cormen = make(Book,
+                  title='Algorithms 3rd Edition',
+                  author='Cormen et al',
+                  description='Data structures and algorithms -- good book',
+                  release_date=datetime(day=1, month=5, year=2000),
+                  genre='Prog')
+
+    got = make(Book,
+               title='Game of Thrones',
+               author='George RR Martin',
+               description='Sex and slayings',
+               release_date=datetime(day=5, month=6, year=2013),
+               genre='Fan'
+               )
 
     # Users
-    stefan = User.objects.create(username='stefan',
-                                 password='parola123')
-    stefan.save()
+    stefan = make(User,
+                  username='stefan',
+                  password='parola123')
 
-    alex = User.objects.create(username='alex',
-                               password='parola123')
-    alex.save()
+    alex = make(User,
+                username='alex',
+                password='parola123')
 
     # Loans
-    stefan_lotr = Loan.objects.create()
+    stefan_lotr = make(Loan, user=stefan, book=lotr)
+    stefan_cormen = make(Loan, user=stefan, book=lotr)
+
+    alex_got = make(Loan, user=alex, book=got)
