@@ -1,5 +1,6 @@
 package com.example.alexbuicescu.smartlibraryandroid.rest;
 
+import com.example.alexbuicescu.smartlibraryandroid.rest.requests.EmptyRequest;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.LoggedInRequest;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.LoginRequest;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.LoanDateResponse;
@@ -43,9 +44,16 @@ public interface RestAPI {
             @Path("book_id") long bookId
     );
 
-    @GET("loan_date/{book_id}")
+    @POST("loan_date/{book_id}")
     Call<LoanDateResponse> LOAN_DATE_CALL(
-            @Path("book_id") long bookId
+            @Path("book_id") long bookId,
+            @Body LoggedInRequest request
+    );
+
+    @POST("place_loan/{book_id}")
+    Call<EmptyRequest> BORROW_CALL(
+            @Path("book_id") long bookId,
+            @Body LoggedInRequest request
     );
 
 }

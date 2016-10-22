@@ -6,14 +6,17 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.alexbuicescu.smartlibraryandroid.R;
 import com.example.alexbuicescu.smartlibraryandroid.managers.BooksManager;
+import com.example.alexbuicescu.smartlibraryandroid.pojos.eventbus.BorrowMessage;
 import com.example.alexbuicescu.smartlibraryandroid.pojos.eventbus.LoanDateMessage;
 import com.example.alexbuicescu.smartlibraryandroid.pojos.eventbus.LoanedTogetherWithMessage;
 import com.example.alexbuicescu.smartlibraryandroid.rest.RestClient;
@@ -40,6 +43,8 @@ public class BookDetailsActivity extends BaseActivity {
     private AppCompatImageView coverImageViewBlurred;
     private Button borrowButton;
     private Button alreadyBorrowedButton;
+    private TextView deadlineTextView;
+    private LinearLayout deadlineLinearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +84,7 @@ public class BookDetailsActivity extends BaseActivity {
     private void initLayout() {
         initToolbar();
 
-        recommendedBooksAdapter = new OtherBooksAdapter();
+        recommendedBooksAdapter = new OtherBooksAdapter(BookDetailsActivity.this);
         recommendedBooksRecyclerView = (RecyclerView) findViewById(R.id.activity_book_details_other_books_recyclerview);
         recommendedBooksRecyclerView.setAdapter(recommendedBooksAdapter);
 
@@ -89,10 +94,16 @@ public class BookDetailsActivity extends BaseActivity {
         borrowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                RestClient.getInstance(BookDetailsActivity.this).BORROW_CALL(book.getBookId());
             }
         });
         alreadyBorrowedButton = (Button) findViewById(R.id.activity_book_details_already_borrowed_button);
+        alreadyBorrowedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RestClient.getInstance(BookDetailsActivity.this).BORROW_CALL(book.getBookId());
+            }
+        });
 
         coverImageView = (AppCompatImageView) findViewById(R.id.activity_book_details_cover_imageview);
         coverImageViewBlurred = (AppCompatImageView) findViewById(R.id.activity_book_details_blurred_cover_imageview);
@@ -105,6 +116,9 @@ public class BookDetailsActivity extends BaseActivity {
                 coverImageView.setImageBitmap(loadedImage);
             }
         });
+
+        deadlineTextView = (TextView) findViewById(R.id.activity_book_details_deadline_textview);
+        deadlineLinearLayout = (LinearLayout) findViewById(R.id.activity_book_details_deadline_linearlayout);
     }
 
     private void initToolbar() {
@@ -149,13 +163,29 @@ public class BookDetailsActivity extends BaseActivity {
 
     @Subscribe
     public void onEvent(LoanDateMessage message) {
+        Log.i(TAG, "onEvent: LoanDateMessage");
         if (message.isSuccess()) {
             if (message.getDate() != null && !message.getDate().equals("")) {
                 borrowButton.setVisibility(View.GONE);
                 alreadyBorrowedButton.setVisibility(View.VISIBLE);
+                deadlineLinearLayout.setVisibility(View.VISIBLE);
+                deadlineTextView.setText(message.getDate());
+                return;
             }
         }
         borrowButton.setVisibility(View.VISIBLE);
         alreadyBorrowedButton.setVisibility(View.GONE);
+        deadlineLinearLayout.setVisibility(View.GONE);
+    }
+
+    @Subscribe
+    public void onEvent(BorrowMessage message) {
+        Log.i(TAG, "onEvent: BorrowMessage: " + message.isSuccess());
+        if (message.isSuccess()) {
+            borrowButton.setVisibility(View.GONE);
+            alreadyBorrowedButton.setVisibility(View.VISIBLE);
+
+            RestClient.getInstance(BookDetailsActivity.this).LOAN_DATE_CALL(book.getBookId());
+        }
     }
 }

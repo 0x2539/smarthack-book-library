@@ -1,12 +1,16 @@
 package com.example.alexbuicescu.smartlibraryandroid.views;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.example.alexbuicescu.smartlibraryandroid.R;
+import com.example.alexbuicescu.smartlibraryandroid.activities.BookDetailsActivity;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.MainBooksResponse;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -17,9 +21,11 @@ import java.util.ArrayList;
  */
 public class OtherBooksAdapter extends RecyclerView.Adapter<OtherBooksAdapter.ViewHolder> {
 
+    private Context context;
     private ArrayList<MainBooksResponse> items;
 
-    public OtherBooksAdapter() {
+    public OtherBooksAdapter(Context context) {
+        this.context = context;
         items = new ArrayList<>();
     }
 
@@ -33,6 +39,14 @@ public class OtherBooksAdapter extends RecyclerView.Adapter<OtherBooksAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         ImageLoader.getInstance().displayImage(items.get(position).getBook().getCoverUrl(), holder.bookImageView);
+        holder.clickableRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, BookDetailsActivity.class);
+                intent.putExtra(BookDetailsActivity.KEY_BOOK_ID, items.get(position).getBookId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -50,10 +64,12 @@ public class OtherBooksAdapter extends RecyclerView.Adapter<OtherBooksAdapter.Vi
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         AppCompatImageView bookImageView;
+        RelativeLayout clickableRelativeLayout;
 
         ViewHolder(View itemView) {
             super(itemView);
             bookImageView = (AppCompatImageView) itemView.findViewById(R.id.row_other_books_layout_imageview);
+            clickableRelativeLayout = (RelativeLayout) itemView.findViewById(R.id.row_other_books_clickable_layout);
         }
     }
 }

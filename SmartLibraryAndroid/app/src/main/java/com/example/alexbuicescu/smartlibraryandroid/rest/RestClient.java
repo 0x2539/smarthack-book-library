@@ -2,6 +2,7 @@ package com.example.alexbuicescu.smartlibraryandroid.rest;
 
 import android.content.Context;
 
+import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.BorrowCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.BorrowedCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.LoanDateCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.LoanedTogetherWithCallback;
@@ -102,9 +103,18 @@ public class RestClient {
 
     public void LOAN_DATE_CALL(long bookId) {
 
-        Call<LoanDateResponse> call = getApiService().LOAN_DATE_CALL(bookId);
+        LoggedInRequest request = new LoggedInRequest(UserPreferences.getLoginToken(context));
+        Call<LoanDateResponse> call = getApiService().LOAN_DATE_CALL(bookId, request);
         //asynchronous call
         call.enqueue(new LoanDateCallback(context, new EmptyRequest()));
+    }
+
+    public void BORROW_CALL(long bookId) {
+
+        LoggedInRequest request = new LoggedInRequest(UserPreferences.getLoginToken(context));
+        Call<EmptyRequest> call = getApiService().BORROW_CALL(bookId, request);
+        //asynchronous call
+        call.enqueue(new BorrowCallback(context, new EmptyRequest()));
     }
 
     private void setContext(Context context) {

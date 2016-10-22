@@ -44,7 +44,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white">
+                <LinearLayout
+                    android:id="@+id/activity_book_details_deadline_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="@string/deadline"/>
+                    <TextView
+                        android:id="@+id/activity_book_details_deadline_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:textColor="#777777"
+                        tools:text="2016"/>
+                </LinearLayout>
                 <TextView
                     android:id="@+id/activity_book_details_description_textview"
                     android:layout_width="match_parent"
@@ -52,6 +73,7 @@
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:layout_below="@+id/activity_book_details_deadline_linearlayout"
                     tools:text="some relasldmaskldnkj asbdkjas dkjasdbkab dkjas dbkajsd bkajsd bakjs dbkajs bkasdbas das das das d" />
 
                 <RelativeLayout
@@ -73,9 +95,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:enabled="false"
-                        android:text="@string/book_already_borrowed_button"
-                        android:theme="@style/UnavailableButton"
+                        android:text="@string/book_extend_period"
                         android:visibility="gone" />
 
                 </RelativeLayout>
