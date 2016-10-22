@@ -1,38 +1,35 @@
 
 .intro-header{
-height:630px;
-padding-top:50px;
-padding-bottom:50px;
-color:#f8f8f8;
-background-size:cover;
-text-align:center;
-background-color:#B2DFDB; 
-overflow: hidden;
+  height:630px;
+  padding-top:50px;
+  padding-bottom:50px;
+  color:#f8f8f8;
+  background-size:cover;
+  text-align:center;
+  background-color:#B2DFDB;
+  overflow: hidden;
 }
 
 .affix {
-      top: 0;
-      width: 100%;
-  }
+  top: 0;
+  width: 100%;
+}
 
 .affix + .container-fluid {
-      padding-top: 70px;
-  }
+  padding-top: 70px;
+}
 
- .impimg{
- 	padding-bottom:60px; 
- }
+.impimg{
+  padding-bottom:60px;
+}
 
 .navbar{
-    margin-bottom: 0px;
+  margin-bottom: 0px;
 }
-.navbar-default{
-	background-color: #fff;
-}
+
 #nav{
   z-index:9999;
 }
-
 
 section {
   padding: 100px 0;
@@ -76,7 +73,17 @@ footer {
   color: #BDBDBD;
   text-align: center;
 }
-footer p {
+
+/*footer p {
   font-size: 20px;
   margin: 0;
+}*/
+
+header {
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  overflow-y: hidden;
+  background: #B2DFDB;
+  min-height: 100%;
 }
