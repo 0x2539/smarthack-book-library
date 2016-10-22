@@ -47,4 +47,27 @@
         <item name="color">@color/colorText</item>
     </style>
 
+    <style name="MainActivityTheme" parent="AppTheme">
+        <item name="android:windowActionBar">false</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <style name="ActionBarThemeOverlay" parent="">
+        <item name="colorControlNormal">@color/colorText</item>
+        <!--<item name="colorControlHighlight">@color/colorAccent</item>-->
+        <!--<item name="colorControlActivated">@color/colorAccent</item>-->
+
+        <!-- change toolbar text color -->
+        <item name="android:textColorPrimary">@color/colorText</item>
+
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+
+        <item name="android:listDivider">@color/colorDivider</item>
+        <item name="android:textColorSecondary">@color/grey_half</item>
+    </style>
+
 </resources>
