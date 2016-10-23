@@ -9,7 +9,8 @@ public class MyError {
     @SerializedName("error")
     private String error;
 
-    public String getError() {
+    public String
+    getError() {
         return error;
     }
 

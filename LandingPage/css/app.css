@@ -50,6 +50,10 @@ section.download {
   background-color: #FF4081;
 }
 
+.download {
+  color: var(--dark-primary-color);
+}
+
 section.download h2 {
   margin-top: 0;
   font-size: 50px;
@@ -98,12 +102,6 @@ header {
   min-height: 100%;
 }
 
-/*.device-container{
-  max-width: none;
-  max-height: calc(0vh);
-  min-width: 600px;
-  margin-bottom: 0;
-}*/
 
 #mainNav.affix{
   background-color: var(--dark-primary-color);
@@ -152,7 +150,6 @@ header {
   margin-left: 20px;
   margin-right: 20px;
 }
-
 
 .badge-link:hover, .badge-link:focus, .badge-link:visited, .badge-link:link, .badge-link:active {
   text-decoration: none;

@@ -57,15 +57,22 @@ def login(request):
     user = None
     if google_id:
         try:
-            user = User.objects.get(google_id=google_id)
+            user = User.objects.get(username=google_id)
         except User.DoesNotExist:
-            pass
+
+            user = User(username=google_id)
+            user.save()
+
+            profile = Profile.objects.get(user_id=user.id)
+            profile.google_id = google_id
+            profile.hashed_password = '123'
+            profile.save()
 
     elif username and password:
         try:
             user = User.objects.get(username=username)  # and password
             profile = Profile.objects.get(user_id=user.id)
-            if not check_password(password, profile.hashed_password):
+            if not profile.hashed_password or profile.hashed_password == '123' or not check_password(password, profile.hashed_password):
                 user = None
         except User.DoesNotExist:
             pass
@@ -73,7 +80,7 @@ def login(request):
             pass
 
     if not user:
-        return HttpResponse(status=400, content='User & Password or Google ID not specified/incorrect')
+        return HttpResponse(status=400, content=json.dumps({'error': 'LOGIN_INVALID'}))
 
     token = generate_login_token(user.id)
     token_json = json.dumps({'token': token, 'username': user.username, 'user_id': user.id})
@@ -98,13 +105,11 @@ def sign_up(request):
     elif username:
         try:
             user = User.objects.get(username=username)  # and password
-            print('user found:', user)
         except User.DoesNotExist:
-            print('user not found')
             pass
 
     if user:
-        return HttpResponse(status=400, content='User & Password or Google ID not specified/incorrect')
+        return HttpResponse(status=400, content=json.dumps({'error': 'LOGIN_INVALID'}))
 
     if username and password:
         hashed_password = hash_password(password)
@@ -116,7 +121,7 @@ def sign_up(request):
         profile.hashed_password = hashed_password
         profile.save()
     elif google_id:
-        user = User(username=google_id, google_id='google_id')
+        user = User(username=google_id)
         user.save()
 
         profile = Profile.objects.get(user_id=user.id)
@@ -124,7 +129,7 @@ def sign_up(request):
         profile.hashed_password = '123'
         profile.save()
     else:
-        return HttpResponse(status=400, content='User & Password or Google ID not specified/incorrect')
+        return HttpResponse(status=400, content=json.dumps({'error': 'LOGIN_INVALID'}))
 
     token = generate_login_token(user.id)
     token_json = json.dumps({'token': token, 'username': user.username, 'user_id': user.id})
@@ -139,9 +144,6 @@ def profile(request, user_id):
     except User.DoesNotExist:
         # we have no object!  do something
         user = {}
-
-    print (json.dumps(json.loads(json_serialize([user]))[0]))
-    print ('user:', user.first_name)
 
     return json_obj_response([user])
 
@@ -209,6 +211,10 @@ def all_loans(request, user_id):
 def place_loan(request, user_id, book_id):
     user = User.objects.get(id=user_id)
     book = Book.objects.get(id=book_id)
+    loans = Loan.objects.filter(user_id=user_id)
+
+    if len(loans) > 5:
+        return HttpResponse(status=400, content=json.dumps({'error': 'CANT_BORROW'}))
 
     try:
         # Loan already exists, extend its period

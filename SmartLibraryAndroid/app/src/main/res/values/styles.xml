@@ -74,4 +74,18 @@
         <item name="android:listDivider">@color/colorDivider</item>
         <item name="android:textColorSecondary">@color/grey_half</item>
     </style>
+
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:fitsSystemWindows">false</item>
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+
+        <!--<item name="android:buttonStyle" tools:targetApi="lollipop">@style/ButtonText</item>-->
+        <!--<item name="android:colorButtonNormal" tools:targetApi="lollipop">@color/colorPrimary</item>-->
+        <!--pre lollipop -->
+        <!--<item name="buttonStyle">@style/ButtonText</item>-->
+        <!--<item name="colorButtonNormal">@color/colorPrimary</item>-->
+    </style>
 </resources>
