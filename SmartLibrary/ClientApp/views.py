@@ -98,9 +98,9 @@ def sign_up(request):
     elif username:
         try:
             user = User.objects.get(username=username)  # and password
-            print ('user found:', user)
+            print('user found:', user)
         except User.DoesNotExist:
-            print ('user not found')
+            print('user not found')
             pass
 
     if user:
