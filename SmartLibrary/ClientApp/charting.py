@@ -4,8 +4,14 @@ import pandas as pd
 
 from .models import Book
 
+CACHED_COORDS = None
+
 
 def compute_coords():
+    global CACHED_COORDS
+    if CACHED_COORDS is not None:
+        return CACHED_COORDS
+
     df = pd.DataFrame.from_records(Book.objects.all().values())
     df = df[['short_name', 'humor', 'id', 'nr_pages', 'popularity']]
     df = df.set_index('short_name')
@@ -36,6 +42,7 @@ def compute_coords():
         coords['cluster%dD' % dim] = labels
 
     coords['book'] = coords.index
+    CACHED_COORDS = coords
     return coords
 
 

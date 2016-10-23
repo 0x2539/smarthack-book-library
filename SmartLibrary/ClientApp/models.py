@@ -5,7 +5,9 @@ from django.contrib.auth.models import User
 from itertools import chain
 from django.db.models.signals import post_save
 from django.core.validators import MaxValueValidator, MinValueValidator
+import numpy as np
 
+from .charting import compute_coords
 
 join_querysets = lambda sets: set(chain(*sets))
 GRADE_VALIDATORS = [MinValueValidator(1), MaxValueValidator(10)]
@@ -45,6 +47,22 @@ class Book(models.Model):
         loans = Loan.objects.filter(book=self)
         loans_around = [loan.user.profile.loaned_around(loan.start_date) for loan in loans]
         return join_querysets(loans_around) - {self}
+
+    def nearest(self, n_neighbours=2):
+        coords = compute_coords().copy()
+        self_coords = coords[coords.book == self.short_name]
+
+        x = self_coords.x2D.values[0]
+        y = self_coords.y2D.values[0]
+        cluster = self_coords.cluster2D.values[0]
+
+        coords = coords[coords.cluster2D == cluster]  # only look in the same cluster
+        coords['distance'] = np.sqrt((coords.x2D - x) ** 2 - (coords.y2D - y) ** 2)  # euclidian distance
+        coords = coords.sort_values(by='distance')
+        coords = coords.ix[1:1+n_neighbours]  # first one (index 0) is itself
+        book_names = coords.book
+
+        return Book.objects.filter(short_name__in=coords.book_names)
 
 
 class Loan(models.Model):
