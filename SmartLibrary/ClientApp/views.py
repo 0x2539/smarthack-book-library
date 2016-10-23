@@ -58,7 +58,7 @@ def login(request):
         return HttpResponse(status=400, content='User & Password or Google ID not specified/incorrect')
 
     token = generate_login_token(user.id)
-    token_json = json.dumps({'token': token, 'username': user.username})
+    token_json = json.dumps({'token': token, 'username': user.username, 'user_id': user.id})
 
     return HttpResponse(status=200, content=token_json)
 
@@ -87,7 +87,13 @@ def loan_date(request, user_id, book_id):
 
     return JsonResponse({'date': loan.return_date.strftime('%-d %b %Y')})
 
+
+@login_only
+def all_loans(request, user_id):
+    return json_response(Loan.objects.all())
+
 # return json_response(Loan.objects.all())
+
 
 @login_only
 def place_loan(request, user_id, book_id):

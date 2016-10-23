@@ -12,6 +12,9 @@ public class LoginResponse {
     @SerializedName("username")
     private String username;
 
+    @SerializedName("user_id")
+    private long userId;
+
     public String getToken() {
         return token;
     }
@@ -26,5 +29,13 @@ public class LoginResponse {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 }

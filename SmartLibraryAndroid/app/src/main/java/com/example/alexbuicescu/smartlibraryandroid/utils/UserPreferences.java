@@ -8,6 +8,15 @@ import android.content.Context;
 public class UserPreferences {
     private static final String KEY_LOGIN_TOKEN = "KEY_LOGIN_TOKEN";
     private static final String KEY_USERNAME = "KEY_USERNAME";
+    private static final String KEY_USER_ID = "KEY_USER_ID";
+
+    public static void setUserId(Context context, long userId) {
+        PrefUtils.setLongToPrefs(context, KEY_USER_ID, userId);
+    }
+
+    public static long getUserId(Context context) {
+        return PrefUtils.getLongFromPrefs(context, KEY_USER_ID, -1);
+    }
 
     public static void setUsername(Context context, String username) {
         PrefUtils.setStringToPrefs(context, KEY_USERNAME, username);
