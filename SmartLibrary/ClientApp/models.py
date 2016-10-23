@@ -8,6 +8,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 import numpy as np
 
 # from .charting import compute_coords
+from SmartLibrary.ClientApp.login_utils import hash_password
 
 join_querysets = lambda sets: set(chain(*sets))
 GRADE_VALIDATORS = [MinValueValidator(1), MaxValueValidator(10)]
@@ -617,6 +618,11 @@ def populate():
                 username='alex',
                 password='parola123',
                 email='alex@gmail.com')
+
+    alexP = make(Profile,
+                user_id=alex.id,
+                 hashed_password=hash_password('alex')
+                 )
 
     ade = make(User,
                username='ade',
