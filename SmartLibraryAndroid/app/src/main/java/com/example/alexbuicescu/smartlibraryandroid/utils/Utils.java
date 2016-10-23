@@ -5,6 +5,7 @@ import android.util.Log;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by alexbuicescu on 10/23/16.
@@ -22,6 +23,14 @@ public class Utils {
         } catch (ParseException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+
+            format = new SimpleDateFormat("dd MMM yyyy", Locale.US);
+            try {
+                Date date = format.parse(dateAsString);
+                return date;
+            } catch (ParseException e1) {
+                e1.printStackTrace();
+            }
         }
         return null;
     }
@@ -56,6 +65,7 @@ public class Utils {
             return false;
         }
         long diff = theDate.getTime() - new Date().getTime();
+        Log.i(TAG, "isDateInPast: " + diff);
 
         return diff < 0;
     }

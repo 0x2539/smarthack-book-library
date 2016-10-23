@@ -172,11 +172,11 @@ def populate():
                email='andreea@yahoo.com')
 
     # Loans
-    stefan_lotr = make(Loan, user=stefan, book=lotr, start_date=datetime(day=22, month=10, year=2016, hour=19, minute=30))
+    stefan_lotr = make(Loan, user=stefan, book=lotr, start_date=datetime(day=22, month=9, year=2016, hour=19, minute=30), return_date=datetime(day=24, month=9, year=2016, hour=19, minute=30))
     stefan_sw = make(Loan, user=stefan, book=sw, start_date=datetime(day=22, month=10, year=2016, hour=19, minute=35))
     stefan_cormen = make(Loan, user=stefan, book=cormen, start_date=datetime(day=22, month=2, year=2016, hour=10, minute=0))
 
-    alex_lotr = make(Loan, user=alex, book=lotr, start_date=datetime(day=22, month=10, year=2016, hour=18, minute=10))
+    alex_lotr = make(Loan, user=alex, book=lotr, start_date=datetime(day=22, month=9, year=2016, hour=19, minute=30), return_date=datetime(day=24, month=9, year=2016, hour=19, minute=30))
     alex_got = make(Loan, user=alex, book=got, start_date=datetime(day=22, month=10, year=2016, hour=18, minute=11))
 
     ade_swift = make(Loan, user=ade, book=swift, start_date=datetime(day=5, month=6, year=2016, hour=12, minute=0))

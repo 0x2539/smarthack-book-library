@@ -15,5 +15,5 @@
     <color name="google_button_text_color">#C9000000</color>
     <color name="transparent">#00000000</color> <!--54% opacity black-->
     <color name="red_late">#aaff0000</color> <!--54% opacity black-->
-    <color name="grey_read">#77000000</color> <!--54% opacity black-->
+    <color name="grey_read">#aaFFFFFF</color> <!--54% opacity black-->
 </resources>

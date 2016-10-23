@@ -28,6 +28,7 @@ public class Book {
     private BookGenreEnum genre;
 
     private boolean dueSoon;
+    private boolean alreadyRead;
 
     public String getTitle() {
         return title;
@@ -91,5 +92,13 @@ public class Book {
 
     public void setReturnDate(String returnDate) {
         this.returnDate = returnDate;
+    }
+
+    public boolean isAlreadyRead() {
+        return alreadyRead;
+    }
+
+    public void setAlreadyRead(boolean alreadyRead) {
+        this.alreadyRead = alreadyRead;
     }
 }

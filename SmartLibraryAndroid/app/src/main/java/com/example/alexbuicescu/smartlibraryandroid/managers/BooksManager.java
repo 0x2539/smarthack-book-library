@@ -81,6 +81,7 @@ public class BooksManager {
         for (MainBooksResponse book : books) {
             Log.i(TAG, "updateDueSoon: " + book.getBook().getTitle() + " " + Utils.isDateSoon(book.getBook().getReturnDate()));
             book.getBook().setDueSoon(Utils.isDateSoon(book.getBook().getReturnDate()));
+            book.getBook().setAlreadyRead(Utils.isDateInPast(book.getBook().getReturnDate()));
             newBooks.add(book);
         }
         return newBooks;
@@ -96,7 +97,8 @@ public class BooksManager {
             for (MainBooksResponse book2 : borrowedBooks) {
                 if (book.getBookId() == book2.getBookId()) {
                     book.getBook().setDueSoon(Utils.isDateSoon(book2.getBook().getReturnDate()));
-                    Log.i(TAG, "updateDueSoonOthers: " + book2.getBook().getTitle() + " " + book2.getBook().getReturnDate() + " " + book.getBook().isDueSoon());
+                    book.getBook().setAlreadyRead(Utils.isDateInPast(book2.getBook().getReturnDate()));
+//                    Log.i(TAG, "updateDueSoonOthers: " + book2.getBook().getTitle() + " " + book2.getBook().getReturnDate() + " " + book.getBook().isDueSoon());
                     newBooks.add(book);
                     found = true;
                 }

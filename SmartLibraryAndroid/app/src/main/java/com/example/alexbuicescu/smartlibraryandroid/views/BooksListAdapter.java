@@ -92,7 +92,8 @@ public class BooksListAdapter extends BaseAdapter {
         if (currentItems.get(position).getBook().isDueSoon()) {
             holder.dueSoonTextView.setVisibility(View.VISIBLE);
         }
-        if (Utils.isDateSoon(currentItems.get(position).getBook().getReturnDate())) {
+        if (currentItems.get(position).getBook().isAlreadyRead()) {
+            holder.dueSoonTextView.setVisibility(View.GONE);
             holder.readTextView.setVisibility(View.VISIBLE);
         }
 //        ImageLoader.getInstance().displayImage("http://www.proprofs.com/quiz-school/topic_images/p19c7ebf8va58mc51mdqteg14453.jpg", holder.coverImageView);
