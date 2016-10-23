@@ -163,13 +163,69 @@ def populate():
                humor=2
                )
 
+    mindfulness = make(Book,
+               title='Mindfulness for Beginners',
+               short_name='Mindfulness',
+               author='Jon Kabat-Zinn',
+               description='What if you could profoundly change your life just by becoming more mindful of your breathing? According to Jon Kabat-Zinn, you can. What if paying attention on purpose (and nonjudgmentally) could improve your health? Again, according to Dr. Kabat-Zinn it can.',
+               release_date=datetime(day=5, month=6, year=2006),
+               genre='SelfDev',
+
+               complexity=3,
+               nr_pages=2,
+               popularity=3,
+               humor=1
+               )
+
+    meditation = make(Book,
+               title='Meditation: Achieving Inner Peace and Tranquility In Your Life',
+               short_name='Meditation',
+               author='Brian L. Weiss',
+               description='Meditation is a technique that can be used to experience peace, tranquility, and an inner beauty, leading us to rethink everything around us, even ourselves. It prompts us to trust in the ability we have to use and direct our energies to purify our bodies and minds...so that we can discover and develop our spirituality.',
+               release_date=datetime(day=5, month=6, year=2002),
+               genre='SelfDev',
+
+               complexity=4,
+               nr_pages=64,
+               popularity=3,
+               humor=1
+               )
+
+    nonrunner = make(Book,
+               title='The Non-Runner\'s Marathon Trainer',
+               short_name='Non-Runner',
+               author='David A. Whitsett',
+               description='Athlete. Runner. Marathoner. Are these words you wouldn\'t exactly use to describe yourself? Do you consider yourself too old or too out of shape to run a marathon? But somewhere deep inside have you always admired the people who could reach down and come up with the mental and physical strength to complete such a daunting and rewarding accomplishment?',
+               release_date=datetime(day=5, month=6, year=1998),
+               genre='SelfDev',
+
+               complexity=4,
+               nr_pages=288,
+               popularity=3,
+               humor=1
+               )
+
+    performance = make(Book,
+               title='Spartan Up!: A take-no-prisoners guide to overcoming obstacles and achieving peak preformance in life',
+               short_name='Spartan Up!',
+               author='Joe De Sena',
+               description='De Sena\’s prescription for life’s insurmountable obstacles is to get off the couch and crush them through hard work and force of will. A legend in the ultramarathon community, he created Spartan Race, extreme obstacle races where no one knows what to expect, but to finish is to be transformed.',
+               release_date=datetime(day=5, month=6, year=2014),
+               genre='SelfDev',
+
+               complexity=4,
+               nr_pages=224,
+               popularity=3,
+               humor=1
+               )
+
     prince = make(Book,
                title='The Little Prince',
                short_name='Prince',
                author='Antonie de Saint-Exupery',
                description='With a timeless charm it tells the story of a little boy who leaves the safety of his own tiny planet to travel the universe, learning the vagaries of adult behaviour through a series of extraordinary encounters. His personal odyssey culminates in a voyage to Earth and further adventures. ',
                release_date=datetime(day=5, month=6, year=1943),
-               genre='Children',
+               genre='Fan',
 
                complexity=1,
                nr_pages=83,
@@ -183,7 +239,7 @@ def populate():
                author='Nicholas Sparks',
                description='Noah is restoring a plantation home to its former glory, and he is haunted by images of the beautiful girl he met fourteen years earlier, a girl he loved like no other. Unable to find her, yet unwilling to forget the summer they spent together, Noah is content to live with only memories...until she unexpectedly returns to his town to see him once again.',
                release_date=datetime(day=5, month=6, year=1996),
-               genre='Romance',
+               genre='R',
 
                complexity=2,
                nr_pages=214,
@@ -197,7 +253,7 @@ def populate():
                author='Lewis Carroll',
                description='Weary of her storybook, one "without pictures or conversations," the young and imaginative Alice follows a hasty hare underground--to come face-to-face with some of the strangest adventures and most fantastic characters in all of literature. ',
                release_date=datetime(day=5, month=6, year=1865),
-               genre='Children',
+               genre='Fan',
 
                complexity=1,
                nr_pages=239,
@@ -211,7 +267,7 @@ def populate():
                author='John Green',
                description='Despite the tumor-shrinking medical miracle that has bought her a few years, Hazel has never been anything but terminal, her final chapter inscribed upon diagnosis. But when a gorgeous plot twist named Augustus Waters suddenly appears at Cancer Kid Support Group, Hazel\'s story is about to be completely rewritten.',
                release_date=datetime(day=10, month=1, year=2012),
-               genre='Romance',
+               genre='R',
 
                complexity=2,
                nr_pages=313,
@@ -225,9 +281,9 @@ def populate():
                author='Markus Zusak',
                description='It’s just a small story really, about among other things: a girl, some words, an accordionist, some fanatical Germans, a Jewish fist-fighter, and quite a lot of thievery. . . .',
                release_date=datetime(day=5, month=6, year=2005),
-               genre='Fiction History',
+               genre='SF',
 
-               complexity=3,
+               complexity=5,
                nr_pages=552,
                popularity=7,
                humor=2
@@ -239,7 +295,7 @@ def populate():
                author='J. K. Rowling',
                description='Harry Potter\'s life is miserable. His parents are dead and he\'s stuck with his heartless relatives, who force him to live in a tiny closet under the stairs. But his fortune changes when he receives a letter that tells him the truth about himself: he\'s a wizard. ',
                release_date=datetime(day=5, month=6, year=1997),
-               genre='Fantasy',
+               genre='Fan',
 
                complexity=2,
                nr_pages=320,
@@ -267,7 +323,7 @@ def populate():
                author='William Shakespeare',
                description='In Romeo and Juliet, Shakespeare creates a world of violence and generational conflict in which two young people fall in love and die because of that love. The story is rather extraordinary in that the normal problems faced by young lovers are here so very large.',
                release_date=datetime(day=5, month=6, year=1595),
-               genre='Romance',
+               genre='R',
 
                complexity=3,
                nr_pages=283,
@@ -281,9 +337,9 @@ def populate():
                author='Oscar Wilde',
                description='Written in his distinctively dazzling manner, Oscar Wilde’s story of a fashionable young man who sells his soul for eternal youth and beauty is the author’s most popular work. ',
                release_date=datetime(day=5, month=6, year=1890),
-               genre='Philosophical',
+               genre='SF',
 
-               complexity=4,
+               complexity=5,
                nr_pages=254,
                popularity=6,
                humor=1
@@ -295,7 +351,7 @@ def populate():
                author='Bram Stoker',
                description='A rich selection of background and source materials is provided in three areas: Contexts includes probable inspirations for Dracula in the earlier works of James Malcolm Rymer and Emily Gerard. ',
                release_date=datetime(day=5, month=6, year=1897),
-               genre='Historical',
+               genre='SF',
 
                complexity=2,
                nr_pages=488,
@@ -309,7 +365,7 @@ def populate():
                author='F. Scott Fitzgerald',
                description='The story of the fabulously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan, of lavish parties on Long Island at a time when The New York Times noted “gin was the national drink and sex the national obsession,” it is an exquisitely crafted tale of America in the 1920s.',
                release_date=datetime(day=5, month=6, year=1925),
-               genre='Romance',
+               genre='R',
 
                complexity=3,
                nr_pages=180,
@@ -351,7 +407,7 @@ def populate():
                  author='J. K. Rowling',
                  description='Harry Potter is due to start his fifth year at Hogwarts School of Witchcraft and Wizardry. His best friends Ron and Hermione have been very secretive all summer and he is desperate to get back to school and find out what has been going on. However, what Harry discovers is far more devastating than he could ever have expected...',
                  release_date=datetime(day=10, month=8, year=2004),
-                 genre='Fantasy',
+                 genre='Fan',
 
                  complexity=2,
                  nr_pages=870,
@@ -365,9 +421,9 @@ def populate():
                  author='Jane Austen',
                  description='tells the story of Mr and Mrs Bennet\'s five unmarried daughters after the rich and eligible Mr Bingley and his status-conscious friend, Mr Darcy, have moved into their neighbourhood. "It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife."',
                  release_date=datetime(day=10, month=6, year=2000),
-                 genre='Drama',
+                 genre='SF',
 
-                 complexity=3,
+                 complexity=4,
                  nr_pages=279,
                  popularity=7,
                  humor=2
@@ -379,7 +435,7 @@ def populate():
                  author='Stephnie Meyer',
                  description='In the first book of the Twilight Saga, internationally bestselling author Stephenie Meyer introduces Bella Swan and Edward Cullen, a pair of star-crossed lovers whose forbidden relationship ripens against the backdrop of small-town suspicion and a mysterious coven of vampires. This is a love story with bite.',
                  release_date=datetime(day=2, month=6, year=2014),
-                 genre='Romance',
+                 genre='R',
 
                  complexity=2,
                  nr_pages=498,
@@ -393,9 +449,9 @@ def populate():
                author='C. S. Lewis',
                description='Set in the fictional realm of Narnia, a fantasy world of magic, mythical beasts, and talking animals, the series narrates the adventures of various children who play central roles in the unfolding history of that world. ',
                release_date=datetime(day=16, month=6, year=2002),
-               genre='Fantasy',
+               genre='Fan',
 
-               complexity=3,
+               complexity=4,
                nr_pages=767,
                popularity=8,
                humor=3
@@ -407,9 +463,9 @@ def populate():
                author='Dan Brown',
                description='An ingenious code hidden in the works of Leonardo da Vinci. A desperate race through the cathedrals and castles of Europe. An astonishing truth concealed for centuries . . . unveiled at last.',
                release_date=datetime(day=5, month=6, year=2006),
-               genre='Mystery',
+               genre='SF',
 
-               complexity=3,
+               complexity=5,
                nr_pages=481,
                popularity=6,
                humor=1
@@ -421,9 +477,9 @@ def populate():
                author='Arthur Golden',
                description='In Memoirs of a Geisha, we enter a world where appearances are paramount; where a girl\'s virginity is auctioned to the highest bidder; where women are trained to beguile the most powerful men; and where love is scorned as illusion. It is a unique and triumphant work of fiction - at once romantic, erotic, suspenseful - and completely unforgettable.',
                release_date=datetime(day=5, month=6, year=2005),
-               genre='Historical',
+               genre='SF',
 
-               complexity=3,
+               complexity=5,
                nr_pages=430,
                popularity=7,
                humor=1
@@ -435,7 +491,7 @@ def populate():
     #            author='Victor Hugo',
     #            description='Introducing one of the most famous characters in literature, Jean Valjean - the noble peasant imprisoned for stealing a loaf of bread. In Les Misérables Victor Hugo takes readers deep into the Parisian underworld, immerses them in a battle between good and evil, and carries them onto the barricades during the uprising of 1832. ',
     #            release_date=datetime(day=5, month=6, year=1862),
-    #            genre='Historical',
+    #            genre='SF',
     #
     #            complexity=5,
     #            nr_pages=1463,
