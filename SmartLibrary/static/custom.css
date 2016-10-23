@@ -1,0 +1,115 @@
+/* NAVBAR */
+
+.navbar-default{
+    background-color: #009688;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: white;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    color: #B2DFDB;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #00796B;
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: #B2DFDB;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+     color: white; 
+    background-color: #00796B;
+}
+
+.tabbable>h2>a, .tabbable>h2>a:hover, .tabbable>h2>a:focus{
+	color: black;
+	text-decoration: none;
+}
+
+th>a{
+	color: #00796B;
+}
+
+.pull-right>a{
+	color: #FF4081;
+}
+
+#content-navbar-collapse .btn-primary, .pull-right .btn-primary {
+    color: #00796B;
+    background-color: white;
+}
+
+#content-navbar-collapse .btn-primary:hover, #content-navbar-collapse .btn-primary:focus, .pull-right .btn-primary:hover, .pull-right .btn-primary:focus, .btn-default:hover {
+    background-color: #B2DFDB;
+}
+
+.breadcrumb{
+	background-color: white;
+
+}
+
+.breadcrumb>li>a{
+	color: #333;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+     border: 0; 
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+    color: white;
+}
+
+.dropdown-menu.pull-right {
+    float: none !important;
+}
+
+.dropdown-header{
+	color: #B2DFDB;
+}
+
+.navbar-nav>li>.dropdown-menu {
+	background-color: #009688;
+}
+
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover, .navbar-default .navbar-nav .open .dropdown-menu>.active>a, .navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover{
+	background-color: #B2DFDB;	
+}
+
+.btn {
+	margin-bottom: 7px;
+}
+
+.calendar caption, .calendarbox h2 {
+	background: #FF4081;
+}
+
+.alert-warning {
+    color: #00796B;
+    background-color: #f0f7f6;
+    border-color: #B2DFDB;
+}
+
+.selector ul.selector-chooser{
+	display: none;
+}
+
+.selector-chosen {
+    float: none !important;
+}
+
+#recent-actions-module{
+	display: none;
+}
