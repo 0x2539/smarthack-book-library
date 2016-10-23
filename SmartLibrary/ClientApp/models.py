@@ -26,6 +26,8 @@ class Book(models.Model):
     nr_pages =   models.IntegerField(validators=GRADE_VALIDATORS)
     popularity = models.IntegerField(validators=GRADE_VALIDATORS)
     humor =      models.IntegerField(validators=GRADE_VALIDATORS)
+    featureX =   models.IntegerField(validators=GRADE_VALIDATORS)
+    featureY =   models.IntegerField(validators=GRADE_VALIDATORS)
 
     GENRES = [
         ('SF', 'Sci-Fi'),
@@ -156,7 +158,7 @@ def populate():
                author='George RR Martin',
                description='Sex and slayings',
                release_date=datetime(day=5, month=6, year=2013),
-               cover_url='https://images.gr-assets.com/books/1369052110l/12962439.jpg'
+               cover_url='https://images.gr-assets.com/books/1369052110l/12962439.jpg',
                genre='Fan',
 
                complexity=3,
