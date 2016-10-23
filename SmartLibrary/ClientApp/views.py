@@ -20,8 +20,10 @@ json_response = lambda data: HttpResponse(json_serialize(data), content_type='ap
 def home(request):
     return HttpResponse('landing page here')
 
+
 def chart(request):
     return render(request, 'chart.html')
+
 
 def books(request):
     return json_response(Book.objects.all())

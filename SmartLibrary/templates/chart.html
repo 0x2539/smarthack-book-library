@@ -3,8 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>chart</title>
+
+  {% load static %}
+  <link rel="stylesheet" href="{% static "style/test.css" %}">
 </head>
 <body>
 chart here...
+  <div id=plot style="width: 480px; height: 400px;"></div>
+
+
+<script src="{% static "node_modules/jquery/dist/jquery.min.js" %}"></script>
+<script src="{% static "node_modules/plotly.js/dist/plotly-basic.min.js" %}"></script>
+<script src="{% static "scripts/chart.js" %}"></script>
+
 </body>
 </html>
