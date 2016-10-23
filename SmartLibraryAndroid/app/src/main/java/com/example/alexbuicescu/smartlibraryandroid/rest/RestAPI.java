@@ -68,4 +68,9 @@ public interface RestAPI {
             @Body UpdateProfileRequest request
     );
 
+    @POST("close_for")
+    Call<ArrayList<MainBooksResponse>> RECOMMENDED_CALL(
+            @Body LoggedInRequest request
+    );
+
 }

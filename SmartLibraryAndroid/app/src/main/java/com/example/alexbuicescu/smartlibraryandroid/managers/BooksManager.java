@@ -59,7 +59,7 @@ public class BooksManager {
         this.borrowedBooks = updateDueSoon(borrowedBooks);
         this.mainBooksResponses = updateDueSoonOthers(this.mainBooksResponses);
         this.searchedResultBooks = updateDueSoonOthers(this.searchedResultBooks);
-        this.searchedResultBooks = updateDueSoonOthers(this.recommendedBooks);
+        this.recommendedBooks = updateDueSoonOthers(this.recommendedBooks);
     }
 
     public ArrayList<MainBooksResponse> getRecommendedBooks() {

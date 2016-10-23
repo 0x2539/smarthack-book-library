@@ -9,6 +9,7 @@ import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.LoanedTogethe
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.LoginCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.MainBooksCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.ProfileCallback;
+import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.RecommendedCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.SearchCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.UpdateProfileCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.EmptyRequest;
@@ -31,7 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by alexbuicescu on Oct 22 - 2016.
  */
 public class RestClient {
-    private static final String BASE_URL = "http://192.168.1.95:5728/api/";
+    private static final String BASE_URL = "http://192.168.1.45:5728/api/";
     public static Retrofit retrofit;
     private static RestClient instance;
     private static RestAPI apiService;
@@ -96,6 +97,13 @@ public class RestClient {
         Call<ArrayList<MainBooksResponse>> call = getApiService().SEARCH_CALL(searchQuery);
         //asynchronous call
         call.enqueue(new SearchCallback(context, new EmptyRequest()));
+    }
+
+    public void RECOMMENDED_CALL() {
+        LoggedInRequest request = new LoggedInRequest(UserPreferences.getLoginToken(context));
+        Call<ArrayList<MainBooksResponse>> call = getApiService().RECOMMENDED_CALL(request);
+        //asynchronous call
+        call.enqueue(new RecommendedCallback(context, request));
     }
 
     public void LOANED_TOGETHER_WITH_CALL(long bookId) {

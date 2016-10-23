@@ -30,8 +30,8 @@
             android:id="@+id/navigation_drawer_menu_profile_action"
             android:title="@string/drawer_profile"/>
 
-        <item
-            android:id="@+id/navigation_drawer_menu_settings_action"
-            android:title="@string/drawer_settings"/>
+        <!--<item-->
+            <!--android:id="@+id/navigation_drawer_menu_settings_action"-->
+            <!--android:title="@string/drawer_settings"/>-->
     </group>
 </menu>
