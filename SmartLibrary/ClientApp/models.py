@@ -108,7 +108,7 @@ def populate():
                 author='JRR Tolkein',
                 description='Book with dwarfs and elves',
                 release_date=datetime(day=24, month=1, year=1994),
-                cover_url='http://cdn.collider.com/wp-content/uploads/2016/07/the-lord-of-the-rings-book-cover.jpg',
+                cover_url='https://images.gr-assets.com/books/1411114164l/33.jpg',
                 genre='Fan',
 
                 complexity=6,
@@ -124,9 +124,9 @@ def populate():
               title='Star Wars',
               short_name='SW',
               author='George Lucas',
-              description='Jedis and Siths',
+              description='Here is the untold story of the events that took place between the movies The Empire Strikes Back and Return of the Jedi: a novel in which Darth Vader still lives--and battles a villain as powerful and evil as himself.',
               release_date=datetime(day=31, month=8, year=1994),
-              cover_url='https://s-media-cache-ak0.pinimg.com/originals/16/86/be/1686bee733af0dbccd952ea34e4955d3.jpg',
+              cover_url='https://images.gr-assets.com/books/1360058156l/359805.jpg',
               genre='SF',
 
               complexity=3,
@@ -141,6 +141,7 @@ def populate():
                   author='Cormen et al',
                   description='Data structures and algorithms -- good book',
                   release_date=datetime(day=1, month=5, year=2000),
+                  cover_url='https://images.gr-assets.com/books/1387741681l/108986.jpg',
                   genre='Prog',
 
                   complexity=8,
@@ -155,6 +156,7 @@ def populate():
                author='George RR Martin',
                description='Sex and slayings',
                release_date=datetime(day=5, month=6, year=2013),
+               cover_url='https://images.gr-assets.com/books/1369052110l/12962439.jpg'
                genre='Fan',
 
                complexity=3,
@@ -211,6 +213,7 @@ def populate():
                author='Joe De Sena',
                description='De Sena\’s prescription for life’s insurmountable obstacles is to get off the couch and crush them through hard work and force of will. A legend in the ultramarathon community, he created Spartan Race, extreme obstacle races where no one knows what to expect, but to finish is to be transformed.',
                release_date=datetime(day=5, month=6, year=2014),
+               cover_url='https://images.gr-assets.com/books/1393362571l/19583491.jpg',
                genre='SelfDev',
 
                complexity=4,
@@ -225,6 +228,7 @@ def populate():
                author='Antonie de Saint-Exupery',
                description='With a timeless charm it tells the story of a little boy who leaves the safety of his own tiny planet to travel the universe, learning the vagaries of adult behaviour through a series of extraordinary encounters. His personal odyssey culminates in a voyage to Earth and further adventures. ',
                release_date=datetime(day=5, month=6, year=1943),
+               cover_url='https://images.gr-assets.com/books/1367545443l/157993.jpg',
                genre='Fan',
 
                complexity=1,
