@@ -6,7 +6,7 @@ import sys
 MY_API_KEY="AIzaSyDoivIdjVMIMyEkQKBf6UPS4OtS6rqMMPY"
 
 data={
-    "to": "/topics/user_alex",
+    "to": "/topics/user_1",
     "data" : {
         "action_type": 1,
         "book_id": 1,

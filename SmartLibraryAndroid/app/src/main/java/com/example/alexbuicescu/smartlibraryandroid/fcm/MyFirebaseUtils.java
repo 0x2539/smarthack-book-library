@@ -19,8 +19,9 @@ public class MyFirebaseUtils {
     private static final String KEY_TOPICS = "KEY_TOPICS";
     private static final String TAG = MyFirebaseUtils.class.getSimpleName();
 
-    public static void subscribeToCurrentUserTopic(Context context, String userId) {
-        if (userId != null && !userId.equals("")) {
+    public static void subscribeToCurrentUserTopic(Context context, long userId) {
+//        if (userId != null && !userId.equals("")) {
+        if (userId != -1) {
             subscribeToTopic(context, "user_" + userId);
         }
     }

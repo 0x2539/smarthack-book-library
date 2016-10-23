@@ -167,7 +167,7 @@ public class LoginActivity extends BaseActivity {
         Log.i(TAG, "onEvent: " + message.isSuccess());
         if(UserPreferences.isUserLoggedIn(LoginActivity.this)) {
 
-            MyFirebaseUtils.subscribeToCurrentUserTopic(LoginActivity.this, UserPreferences.getUsername(LoginActivity.this));
+            MyFirebaseUtils.subscribeToCurrentUserTopic(LoginActivity.this, UserPreferences.getUserId(LoginActivity.this));
 
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
