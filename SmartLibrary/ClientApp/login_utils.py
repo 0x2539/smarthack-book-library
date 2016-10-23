@@ -3,6 +3,11 @@ from datetime import datetime, timedelta
 import jwt
 from django.http import HttpResponse
 from ClientApp.utils import request_to_dict
+import hashlib
+import hmac
+
+from passlib.hash import bcrypt
+
 
 JWT_SECRET_KEY = 'SECRET'
 
@@ -40,3 +45,18 @@ def login_only(api_function):
         return HttpResponse(status=400, content=json.dumps({'error': 'LOGIN_INVALID'}))
 
     return wrapper
+
+
+def hash_password(password):
+    # print 'sign up hashed pw', bcrypt.encrypt(password, rounds=12)
+    return bcrypt.encrypt(password, rounds=4)
+
+
+def check_password(password, password_db):
+
+    # return True
+    if password is None or len(password) == 0:
+        return False
+
+    return bcrypt.verify(password, password_db)
+

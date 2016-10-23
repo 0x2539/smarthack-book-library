@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^api/search/(?P<terms>\w{3,100})/?$', views.search, name='search'),
 
     url(r'^api/login', views.login, name='login'),
+    url(r'^api/sign_up', views.sign_up, name='sign up'),
     url(r'^api/loaned_by', views.loaned_by, name='loaned by'),
     url(r'^api/loaned_together_with/(?P<book_id>\d+)/?$', views.loaned_together_with, name='loaned together with'),
     url(r'^api/loan_date/(?P<book_id>\d+)/?$', views.loan_date, name='loan date'),

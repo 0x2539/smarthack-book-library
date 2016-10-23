@@ -6,8 +6,8 @@ from django.core.serializers import serialize
 from django.db.models import Q
 from django.shortcuts import render
 
-from .models import Book, User, Loan
-from .login_utils import generate_login_token, login_only
+from .models import Book, User, Loan, Profile
+from .login_utils import generate_login_token, login_only, hash_password, check_password
 from .charting import compute_coords
 
 
@@ -56,12 +56,74 @@ def login(request):
 
     user = None
     if google_id:
-        user = User.objects.get(google_id=google_id)
+        try:
+            user = User.objects.get(google_id=google_id)
+        except User.DoesNotExist:
+            pass
 
     elif username and password:
-        user = User.objects.get(username=username)  # and password
+        try:
+            user = User.objects.get(username=username)  # and password
+            profile = Profile.objects.get(user_id=user.id)
+            if not check_password(password, profile.hashed_password):
+                user = None
+        except User.DoesNotExist:
+            pass
+        except Profile.DoesNotExist:
+            pass
 
     if not user:
+        return HttpResponse(status=400, content='User & Password or Google ID not specified/incorrect')
+
+    token = generate_login_token(user.id)
+    token_json = json.dumps({'token': token, 'username': user.username, 'user_id': user.id})
+
+    return HttpResponse(status=200, content=token_json)
+
+
+def sign_up(request):
+    body = json.loads(request.body.decode('utf-8'))
+
+    username = body.get('username', None)
+    password = body.get('password', None)
+    google_id = body.get('google_id', None)
+
+    user = None
+    if google_id:
+        try:
+            user = User.objects.get(google_id=google_id)
+        except User.DoesNotExist:
+            pass
+
+    elif username:
+        try:
+            user = User.objects.get(username=username)  # and password
+            print ('user found:', user)
+        except User.DoesNotExist:
+            print ('user not found')
+            pass
+
+    if user:
+        return HttpResponse(status=400, content='User & Password or Google ID not specified/incorrect')
+
+    if username and password:
+        hashed_password = hash_password(password)
+        user = User(username=username)
+        user.save()
+
+        profile = Profile.objects.get(user_id=user.id)
+        profile.google_id = '123'
+        profile.hashed_password = hashed_password
+        profile.save()
+    elif google_id:
+        user = User(username=google_id, google_id='google_id')
+        user.save()
+
+        profile = Profile.objects.get(user_id=user.id)
+        profile.google_id = google_id
+        profile.hashed_password = '123'
+        profile.save()
+    else:
         return HttpResponse(status=400, content='User & Password or Google ID not specified/incorrect')
 
     token = generate_login_token(user.id)

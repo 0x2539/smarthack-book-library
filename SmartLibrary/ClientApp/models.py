@@ -61,6 +61,7 @@ class Profile(models.Model):
     # access like: request.user.profile.google_id
     user = models.OneToOneField(User)
     google_id = models.CharField(max_length=64)
+    hashed_password = models.CharField(max_length=512)
 
     def loaned_around(self, date):
         before = date - timedelta(minutes=10)
