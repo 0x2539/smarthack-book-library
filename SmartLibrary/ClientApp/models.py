@@ -118,8 +118,8 @@ def populate():
                 popularity=8,
                 humor=5,
 
-                featureX=10,
-                featureY=2
+                featureX=2,
+                featureY=10
                 )
 
     sw = make(Book,
@@ -134,7 +134,10 @@ def populate():
               complexity=3,
               nr_pages=500,
               popularity=9,
-              humor=3
+              humor=3,
+
+                featureX=1,
+                featureY=10
               )
 
     cormen = make(Book,
@@ -149,7 +152,10 @@ def populate():
                   complexity=8,
                   nr_pages=800,
                   popularity=6,
-                  humor=1
+                  humor=1,
+
+                featureX=9,
+                featureY=8
                   )
 
     got = make(Book,
@@ -164,7 +170,10 @@ def populate():
                complexity=3,
                nr_pages=300,
                popularity=8,
-               humor=2
+               humor=2,
+
+                featureX=3,
+                featureY=4
                )
 
     mindfulness = make(Book,
@@ -179,7 +188,10 @@ def populate():
                complexity=3,
                nr_pages=2,
                popularity=3,
-               humor=1
+               humor=1,
+
+                featureX=9,
+                featureY=2
                )
 
     meditation = make(Book,
@@ -194,7 +206,11 @@ def populate():
                complexity=4,
                nr_pages=64,
                popularity=3,
-               humor=1
+               humor=1,
+
+                featureX=10,
+                featureY=1
+
                )
 
     nonrunner = make(Book,
@@ -209,7 +225,10 @@ def populate():
                complexity=4,
                nr_pages=288,
                popularity=3,
-               humor=1
+               humor=1,
+
+                featureX=10,
+                featureY=2
                )
 
     performance = make(Book,
@@ -224,7 +243,10 @@ def populate():
                complexity=4,
                nr_pages=224,
                popularity=3,
-               humor=1
+               humor=1,
+
+                featureX=10,
+                featureY=3
                )
 
     prince = make(Book,
@@ -239,8 +261,13 @@ def populate():
                complexity=1,
                nr_pages=83,
                popularity=8,
-               humor=3
+               humor=3,
+               
+                featureX=5,
+                featureY=10
+
                )
+
 
     notebook = make(Book,
                title='The Notebook',
@@ -254,7 +281,11 @@ def populate():
                complexity=2,
                nr_pages=214,
                popularity=10,
-               humor=1
+               humor=1,
+
+
+                featureX=5,
+                featureY=6
                )
 
     alice = make(Book,
@@ -269,7 +300,10 @@ def populate():
                complexity=1,
                nr_pages=239,
                popularity=9,
-               humor=4
+               humor=4,
+
+                featureX=5,
+                featureY=8
                )
 
     fault = make(Book,
@@ -284,7 +318,10 @@ def populate():
                complexity=2,
                nr_pages=313,
                popularity=7,
-               humor=3
+               humor=3,
+
+                featureX=7,
+                featureY=5
                )
 
     thief = make(Book,
@@ -299,7 +336,10 @@ def populate():
                complexity=5,
                nr_pages=552,
                popularity=7,
-               humor=2
+               humor=2,
+
+                featureX=3,
+                featureY=2
                )
 
     harry1 = make(Book,
@@ -314,7 +354,10 @@ def populate():
                complexity=2,
                nr_pages=320,
                popularity=10,
-               humor=4
+               humor=4,
+
+                featureX=6,
+                featureY=6
                )
 
     hobbit = make(Book,
@@ -329,7 +372,10 @@ def populate():
                complexity=6,
                nr_pages=366,
                popularity=8,
-               humor=4
+               humor=4,
+
+                featureX=2,
+                featureY=9
                )
 
     romeo = make(Book,
@@ -344,7 +390,10 @@ def populate():
                complexity=3,
                nr_pages=283,
                popularity=9,
-               humor=2
+               humor=2,
+
+                featureX=6,
+                featureY=5
                )
 
     dorian = make(Book,
@@ -359,7 +408,10 @@ def populate():
                complexity=5,
                nr_pages=254,
                popularity=6,
-               humor=1
+               humor=1,
+
+                featureX=3,
+                featureY=3
                )
 
     dracula = make(Book,
@@ -374,7 +426,10 @@ def populate():
                complexity=2,
                nr_pages=488,
                popularity=10,
-               humor=1
+               humor=1,
+
+                featureX=4,
+                featureY=3
                )
 
     gatsby = make(Book,
@@ -389,7 +444,10 @@ def populate():
                complexity=3,
                nr_pages=180,
                popularity=8,
-               humor=3
+               humor=3,
+
+                featureX=3,
+                featureY=3
                )
 
     swift = make(Book,
@@ -404,7 +462,10 @@ def populate():
                  complexity=6,
                  nr_pages=250,
                  popularity=5,
-                 humor=2
+                 humor=2,
+
+                featureX=10,
+                featureY=10
                  )
 
     hunger = make(Book,
@@ -419,7 +480,10 @@ def populate():
                  complexity=4,
                  nr_pages=374,
                  popularity=9,
-                 humor=1
+                 humor=1,
+
+                featureX=2,
+                featureY=7
                  )
 
     potter = make(Book,
@@ -434,7 +498,10 @@ def populate():
                  complexity=2,
                  nr_pages=870,
                  popularity=8,
-                 humor=2
+                 humor=2,
+
+                featureX=5,
+                featureY=7
                  )
 
     pride = make(Book,
@@ -449,7 +516,10 @@ def populate():
                  complexity=4,
                  nr_pages=279,
                  popularity=7,
-                 humor=2
+                 humor=2,
+
+                featureX=2,
+                featureY=3
                  )
 
     twilight = make(Book,
@@ -464,7 +534,10 @@ def populate():
                  complexity=2,
                  nr_pages=498,
                  popularity=8,
-                 humor=3
+                 humor=3,
+
+                featureX=7,
+                featureY=6
                  )
 
     narnia = make(Book,
@@ -479,7 +552,10 @@ def populate():
                complexity=4,
                nr_pages=767,
                popularity=8,
-               humor=3
+               humor=3,
+
+                featureX=4,
+                featureY=8
                )
 
     davinci = make(Book,
@@ -494,7 +570,10 @@ def populate():
                complexity=5,
                nr_pages=481,
                popularity=6,
-               humor=1
+               humor=1,
+
+                featureX=4,
+                featureY=3
                )
 
     geisha = make(Book,
@@ -509,7 +588,10 @@ def populate():
                complexity=5,
                nr_pages=430,
                popularity=7,
-               humor=1
+               humor=1,
+
+                featureX=5,
+                featureY=2
                )
 
     # miserables = make(Book,
