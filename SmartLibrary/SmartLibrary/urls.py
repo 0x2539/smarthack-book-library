@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^api/loan_date/(?P<book_id>\d+)/?$', views.loan_date, name='loan date'),
     url(r'^api/place_loan/(?P<book_id>\d+)/?$', views.place_loan, name='place loan'),
     url(r'^api/all_loans', views.all_loans, name='all loans'),
+    url(r'^api/close_for', views.close_for, name='close for'),
     url(r'^api/profile', views.profile, name='profile'),
     url(r'^api/update_profile', views.update_profile, name='update profile'),
 

@@ -48,8 +48,7 @@ class Book(models.Model):
         loans_around = [loan.user.profile.loaned_around(loan.start_date) for loan in loans]
         return join_querysets(loans_around) - {self}
 
-    def nearest(self, n_neighbours=2):
-        coords = compute_coords().copy()
+    def nearest(self, coords, n_neighbours=2):
         self_coords = coords[coords.book == self.short_name]
 
         x = self_coords.x2D.values[0]
@@ -57,12 +56,12 @@ class Book(models.Model):
         cluster = self_coords.cluster2D.values[0]
 
         coords = coords[coords.cluster2D == cluster]  # only look in the same cluster
-        coords['distance'] = np.sqrt((coords.x2D - x) ** 2 - (coords.y2D - y) ** 2)  # euclidian distance
+        coords['distance'] = np.sqrt((coords.x2D - x) ** 2 + (coords.y2D - y) ** 2)  # euclidian distance
         coords = coords.sort_values(by='distance')
         coords = coords.ix[1:1+n_neighbours]  # first one (index 0) is itself
         book_names = coords.book
 
-        return Book.objects.filter(short_name__in=coords.book_names)
+        return Book.objects.filter(short_name__in=book_names)
 
 
 class Loan(models.Model):

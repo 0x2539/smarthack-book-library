@@ -6,7 +6,7 @@ from django.core.serializers import serialize
 from django.db.models import Q
 from django.shortcuts import render
 
-from .models import Book, User, Loan, Profile
+from .models import Book, User, Loan, Profile, join_querysets
 from .login_utils import generate_login_token, login_only, hash_password, check_password
 from .charting import compute_coords
 
@@ -204,7 +204,22 @@ def loan_date(request, user_id, book_id):
 def all_loans(request, user_id):
     return json_response(Loan.objects.all())
 
-# return json_response(Loan.objects.all())
+
+# TODO display this in user
+# @login_only
+def close_for(request):
+    user = User.objects.get(id=2)
+    loaned_books = [loan.book for loan in Loan.objects.filter(user=user)]
+    coords = compute_coords().copy()
+    book_lists = [book.nearest(coords) for book in loaned_books]
+
+    recomms = join_querysets(book_lists)
+    not_read = [recomm for recomm in recomms if recomm not in loaned_books]
+
+    print('>'*25, [recomm for recomm in recomms if recomm not in loaned_books])
+
+    return json_serialize(not_read)
+
 
 
 @login_only
