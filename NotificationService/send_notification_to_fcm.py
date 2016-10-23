@@ -1,11 +1,13 @@
-from urllib2 import *
-import urllib
+# from urllib2 import *
+# import urllib
+from urllib.request import urlopen
 import json
 import sys
 
 MY_API_KEY="AIzaSyDoivIdjVMIMyEkQKBf6UPS4OtS6rqMMPY"
 
 def send_notification(book_id, book_title, user_id):
+    print ('send notif:', book_id, book_title, user_id)
     data={
         "to": "/topics/user_%s" % user_id,
         "data" : {
@@ -19,10 +21,10 @@ def send_notification(book_id, book_title, user_id):
     dataAsJSON = json.dumps(data)
     request = Request(
         "https://fcm.googleapis.com/fcm/send",
-        dataAsJSON,
+        dataAsJSON.encode('utf-8'),
         {
             "Authorization" : "key=" + MY_API_KEY,
             "Content-type" : "application/json"
         }
     )
-    print urlopen(request).read()
+    print (urlopen(request).read().decode('utf-8'))
