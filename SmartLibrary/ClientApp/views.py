@@ -216,7 +216,7 @@ def place_loan(request, user_id, book_id):
     book = Book.objects.get(id=book_id)
     loans = Loan.objects.filter(user_id=user_id)
 
-    if len(loans) >= 0:
+    if len(loans) > 5:
         return HttpResponse(status=400, content=json.dumps({'error': 'CANT_BORROW'}))
 
     try:
