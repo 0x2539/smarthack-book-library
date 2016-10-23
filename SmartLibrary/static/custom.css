@@ -109,3 +109,7 @@ th>a{
 .selector-chosen {
     float: none !important;
 }
+
+#recent-actions-module{
+	display: none;
+}
