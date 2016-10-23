@@ -159,14 +159,17 @@ def populate():
     # Users
     stefan = make(User,
                   username='stefan',
-                  password='parola123')
+                  password='parola123',
+                  email='stefan@google.com')
     alex = make(User,
                 username='alex',
-                password='parola123')
+                password='parola123',
+                email='alex@gmail.com')
 
     ade = make(User,
                username='ade',
-               password='parola123')
+               password='parola123',
+               email='andreea@yahoo.com')
 
     # Loans
     stefan_lotr = make(Loan, user=stefan, book=lotr, start_date=datetime(day=22, month=10, year=2016, hour=19, minute=30))

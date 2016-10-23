@@ -100,7 +100,7 @@ load2Dfigure = (containerId, coords) ->
 
 
   layout =
-    title: 'chart'
+    title: '2D chart'
     hovermode: 'closest'
     dragmode: 'pan'
 
@@ -135,8 +135,8 @@ load2Dfigure = (containerId, coords) ->
       textposition: 'top center'
 #      textfont: size: 10
 
-      marker:
-        color: COLORS[clusterNr]
+#      marker:
+#        color: COLORS[clusterNr]
 #        sizeref: .48
 #        size:    entries.freq
 
@@ -158,7 +158,7 @@ load3Dfigure = (containerId, coords) ->
     ]
 
   layout =
-    title: 'Action Similarities (3D)'
+    title: '3D chart'
     hovermode: 'closest'
 
     scene:
