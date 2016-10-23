@@ -7,8 +7,10 @@ from django.db.models.signals import post_save
 from django.core.validators import MaxValueValidator, MinValueValidator
 import numpy as np
 
+from passlib.hash import bcrypt
+
+
 # from .charting import compute_coords
-from SmartLibrary.ClientApp.login_utils import hash_password
 
 join_querysets = lambda sets: set(chain(*sets))
 GRADE_VALIDATORS = [MinValueValidator(1), MaxValueValidator(10)]
@@ -619,10 +621,9 @@ def populate():
                 password='parola123',
                 email='alex@gmail.com')
 
-    alexP = make(Profile,
-                user_id=alex.id,
-                 hashed_password=hash_password('alex')
-                 )
+    alexP = Profile.objects.get(user_id=alex.id)
+    alexP.hashed_password = bcrypt.encrypt('alex', rounds=4)
+    alexP.save()
 
     ade = make(User,
                username='ade',

@@ -32,7 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by alexbuicescu on Oct 22 - 2016.
  */
 public class RestClient {
-    private static final String BASE_URL = "http://192.168.1.45:5728/api/";
+    private static final String BASE_URL = "http://192.168.1.95:5728/api/";
     public static Retrofit retrofit;
     private static RestClient instance;
     private static RestAPI apiService;
