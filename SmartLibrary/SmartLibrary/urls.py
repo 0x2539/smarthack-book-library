@@ -21,6 +21,7 @@ from ClientApp import views
 urlpatterns = [
     url(r'^admin/?', admin.site.urls),
     url(r'^$', views.home, name='home'),
+    url(r'^chart$', views.chart, name='chart'),
 
     url(r'^api/books', views.books, name='books'),
     url(r'^api/search/(?P<terms>\w{3,100})/?$', views.search, name='search'),

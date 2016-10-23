@@ -1,0 +1,30 @@
+{
+  "name": "smart-library",
+  "version": "0.0.1",
+  "description": "smarthack hackathon",
+  "main": "manage.py",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "./node_modules/coffee-script/bin/coffee --compile --map scripts && ./node_modules/node-sass/bin/node-sass --source-map true style -o style"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexbuicescu/smarthack-book-library.git"
+  },
+  "keywords": [
+    "hackathon"
+  ],
+  "author": "Stefan Niculae",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexbuicescu/smarthack-book-library/issues"
+  },
+  "homepage": "https://github.com/alexbuicescu/smarthack-book-library#readme",
+  "dependencies": {
+    "coffee-script": "^1.11.1",
+    "jquery": "^3.1.1",
+    "lodash": "^4.16.4",
+    "node-sass": "^3.10.1",
+    "plotly.js": "^1.18.1"
+  }
+}

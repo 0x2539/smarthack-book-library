@@ -4,6 +4,7 @@ from functools import partial
 from django.http import HttpResponse, JsonResponse
 from django.core.serializers import serialize
 from django.db.models import Q
+from django.shortcuts import render
 
 from .models import Book, User, Loan
 from .login_utils import generate_login_token, login_only
@@ -19,6 +20,8 @@ json_response = lambda data: HttpResponse(json_serialize(data), content_type='ap
 def home(request):
     return HttpResponse('landing page here')
 
+def chart(request):
+    return render(request, 'chart.html')
 
 def books(request):
     return json_response(Book.objects.all())
@@ -82,6 +85,7 @@ def loan_date(request, user_id, book_id):
 
     return JsonResponse({'date': loan.return_date.strftime('%-d %b %Y')})
 
+# return json_response(Loan.objects.all())
 
 @login_only
 def place_loan(request, user_id, book_id):
