@@ -173,6 +173,7 @@ def populate():
                author='Jon Kabat-Zinn',
                description='What if you could profoundly change your life just by becoming more mindful of your breathing? According to Jon Kabat-Zinn, you can. What if paying attention on purpose (and nonjudgmentally) could improve your health? Again, according to Dr. Kabat-Zinn it can.',
                release_date=datetime(day=5, month=6, year=2006),
+               cover_url='https://images.gr-assets.com/books/1446584518l/14098.jpg',
                genre='SelfDev',
 
                complexity=3,
@@ -187,6 +188,7 @@ def populate():
                author='Brian L. Weiss',
                description='Meditation is a technique that can be used to experience peace, tranquility, and an inner beauty, leading us to rethink everything around us, even ourselves. It prompts us to trust in the ability we have to use and direct our energies to purify our bodies and minds...so that we can discover and develop our spirituality.',
                release_date=datetime(day=5, month=6, year=2002),
+               cover_url='https://images.gr-assets.com/books/1348999317l/167603.jpg',
                genre='SelfDev',
 
                complexity=4,
@@ -201,6 +203,7 @@ def populate():
                author='David A. Whitsett',
                description='Athlete. Runner. Marathoner. Are these words you wouldn\'t exactly use to describe yourself? Do you consider yourself too old or too out of shape to run a marathon? But somewhere deep inside have you always admired the people who could reach down and come up with the mental and physical strength to complete such a daunting and rewarding accomplishment?',
                release_date=datetime(day=5, month=6, year=1998),
+               cover_url='https://images.gr-assets.com/books/1296236131l/98248.jpg',
                genre='SelfDev',
 
                complexity=4,
@@ -455,6 +458,7 @@ def populate():
                  author='Stephnie Meyer',
                  description='In the first book of the Twilight Saga, internationally bestselling author Stephenie Meyer introduces Bella Swan and Edward Cullen, a pair of star-crossed lovers whose forbidden relationship ripens against the backdrop of small-town suspicion and a mysterious coven of vampires. This is a love story with bite.',
                  release_date=datetime(day=2, month=6, year=2014),
+                 cover_url='https://images.gr-assets.com/books/1361039443l/41865.jpg',
                  genre='R',
 
                  complexity=2,
@@ -469,6 +473,7 @@ def populate():
                author='C. S. Lewis',
                description='Set in the fictional realm of Narnia, a fantasy world of magic, mythical beasts, and talking animals, the series narrates the adventures of various children who play central roles in the unfolding history of that world. ',
                release_date=datetime(day=16, month=6, year=2002),
+               cover_url='https://images.gr-assets.com/books/1449868701l/11127.jpg',
                genre='Fan',
 
                complexity=4,
@@ -483,6 +488,7 @@ def populate():
                author='Dan Brown',
                description='An ingenious code hidden in the works of Leonardo da Vinci. A desperate race through the cathedrals and castles of Europe. An astonishing truth concealed for centuries . . . unveiled at last.',
                release_date=datetime(day=5, month=6, year=2006),
+               cover_url='https://images.gr-assets.com/books/1303252999l/968.jpg',
                genre='SF',
 
                complexity=5,
@@ -497,6 +503,7 @@ def populate():
                author='Arthur Golden',
                description='In Memoirs of a Geisha, we enter a world where appearances are paramount; where a girl\'s virginity is auctioned to the highest bidder; where women are trained to beguile the most powerful men; and where love is scorned as illusion. It is a unique and triumphant work of fiction - at once romantic, erotic, suspenseful - and completely unforgettable.',
                release_date=datetime(day=5, month=6, year=2005),
+               cover_url='https://images.gr-assets.com/books/1388367666l/930.jpg',
                genre='SF',
 
                complexity=5,
