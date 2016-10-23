@@ -31,15 +31,16 @@ def send_all_notifications(loans):
             return_date = parser.parse(loan['fields']['return_date'])
             diff = return_date - now
             # print (diff.days, loan['fields']['return_date'])
-            if diff.days <= 30:
+            if diff.days <= 30 and  diff.days > 0:
                 print (diff, loan['fields']['book'], 'A book', loan['fields']['user'])
-                thread.start_new_thread( send_notification, (loan['fields']['book'], 'A book', loan['fields']['user'], ) )
+                send_notification(loan['fields']['book'], 'A book', loan['fields']['user'])
+                # thread.start_new_thread( send_notification, (loan['fields']['book'], 'A book', loan['fields']['user'], ) )
         except:
             pass
 
 if __name__ == '__main__':
     # crontab example:
     # env EDITOR=nano crontab -e  # to open the editor
-    # * * * * * 'echo updating>>~/Desktop/a.txt; source /Users/alexbuicescu/git/my_projects/smarthack-book-library/env/bin/activate; python /Users/alexbuicescu/git/my_projects/smarthack-book-library/NotificationService/notification_service.py' | /bin/bash
+    # * * * * * echo 'source /Users/alexbuicescu/git/my_projects/smarthack-book-library/env/bin/activate; python /Users/alexbuicescu/git/my_projects/smarthack-book-library/NotificationService/notification_service.py' | /bin/bash
     loans = get_all_loans()
     send_all_notifications(loans)
