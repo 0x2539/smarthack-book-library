@@ -13,6 +13,7 @@ GRADE_VALIDATORS = [MinValueValidator(1), MaxValueValidator(10)]
 
 class Book(models.Model):
     title = models.CharField(max_length=256, blank=False, null=False)
+    short_name = models.CharField(max_length=16)
     author = models.CharField(max_length=512)
     description = models.CharField(max_length=2048)
     release_date = models.DateField()
@@ -85,6 +86,7 @@ def populate():
     # Books
     lotr = make(Book,
                 title='Lord of the Rings',
+                short_name='LotR',
                 author='JRR Tolkein',
                 description='Book with dwarfs and elves',
                 release_date=datetime(day=24, month=1, year=1994),
@@ -99,6 +101,7 @@ def populate():
 
     sw = make(Book,
               title='Star Wars',
+              short_name='SW',
               author='George Lucas',
               description='Jedis and Siths',
               release_date=datetime(day=31, month=8, year=1994),
@@ -113,6 +116,7 @@ def populate():
 
     cormen = make(Book,
                   title='Algorithms 3rd Edition',
+                  short_name='Cormen',
                   author='Cormen et al',
                   description='Data structures and algorithms -- good book',
                   release_date=datetime(day=1, month=5, year=2000),
@@ -126,6 +130,7 @@ def populate():
 
     got = make(Book,
                title='Game of Thrones',
+               short_name='GoT',
                author='George RR Martin',
                description='Sex and slayings',
                release_date=datetime(day=5, month=6, year=2013),
@@ -139,6 +144,7 @@ def populate():
 
     swift = make(Book,
                  title='The Swift Porgramming Language',
+                 short_name='Swift',
                  author='Apple Inc',
                  description='Swift is a programming language for creating iOS, macOS, watchOS, and tvOS apps. Swift builds on the best of C and Objective-C, without the constraints of C compatibility.',
                  release_date=datetime(day=2, month=6, year=2014),

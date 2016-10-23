@@ -8,12 +8,14 @@
   <link rel="stylesheet" href="{% static "style/test.css" %}">
 </head>
 <body>
-chart here...
-  <div id=plot style="width: 480px; height: 400px;"></div>
+  <div id="figure-2D" style="width: 100%; height: 600px;"></div>
+  <div id="figure-3D" style="width: 100%; height: 600px;"></div>
 
 
 <script src="{% static "node_modules/jquery/dist/jquery.min.js" %}"></script>
-<script src="{% static "node_modules/plotly.js/dist/plotly-basic.min.js" %}"></script>
+<script src="{% static "node_modules/lodash/lodash.min.js" %}"></script>
+{#<script src="{% static "node_modules/plotly.js/dist/plotly-basic.min.js" %}"></script>#}
+<script src="https://cdn.plot.ly/plotly-1.16.0.min.js"></script>
 <script src="{% static "scripts/chart.js" %}"></script>
 
 </body>

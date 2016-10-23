@@ -8,6 +8,7 @@ from django.shortcuts import render
 
 from .models import Book, User, Loan
 from .login_utils import generate_login_token, login_only
+from .charting import compute_coords
 
 
 GET = 'GET'
@@ -23,6 +24,11 @@ def home(request):
 
 def chart(request):
     return render(request, 'chart.html')
+
+
+def api_chart(request):
+    df = compute_coords()
+    return JsonResponse({col: [str(elem) for elem in df[col]] for col in df.columns})
 
 
 def books(request):

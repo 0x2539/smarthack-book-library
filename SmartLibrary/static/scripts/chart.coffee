@@ -17,10 +17,65 @@ COLORS = [
 ]
 
 $ ->
-  $.getJSON 'api/sims', (data) ->
+  $.getJSON 'api/chart', (data) ->
     load2Dfigure 'figure-2D', data
-    $('#load-3d-button').click ->
-      load3Dfigure 'figure-3D', data
+    load3Dfigure 'figure-3D', data
+
+
+# utils
+@transpose = (data) ->
+  """
+  transpose(transpose(x)) is x
+  >>> transpose [
+    {n: 1, l: 'a'},
+    {n: 2, l: 'b'}
+  ]
+  {
+    n: [1, 2],
+    l: ['a', 'b']
+  }
+
+  >>> transpose {
+    n: [1, 2],
+    l: ['a', 'b']
+  }
+  [
+    {n: 1, l: 'a'},
+    {n: 2, l: 'b'}
+  ]
+  """
+  # https://www.npmjs.com/package/object-transpose
+  transposeArray = (arr) ->
+    builtObj = {}
+    for obj, i in arr
+      for key, value of obj
+        builtObj[key] ?= []
+        builtObj[key][i] = value
+    builtObj
+
+  transposeObject = (obj) ->
+    builtArr = []
+    for key, arr of obj
+      for value, i in arr
+        builtArr[i] ?= {}
+        builtArr[i][key] = value if value?
+    builtArr
+
+  return transposeArray(data) if Array.isArray(data)
+  return transposeObject(data)
+
+@letterNumber = (n) ->
+  """
+  >>> letterNumber 0
+  A
+  >>> letterNumber 1
+  B
+  """
+  n = +n  # make sure it's a number
+  codeOfFirst = 'A'.charCodeAt 0
+  String.fromCharCode(codeOfFirst + n)
+
+
 
 
 hideUnneeded = ->
@@ -45,7 +100,7 @@ load2Dfigure = (containerId, coords) ->
 
 
   layout =
-    title: 'Action Similarities (2D)'
+    title: 'chart'
     hovermode: 'closest'
     dragmode: 'pan'
 
@@ -78,14 +133,14 @@ load2Dfigure = (containerId, coords) ->
       mode: 'markers+text'
       hoverinfo: 'text'
       textposition: 'top center'
-      textfont: size: 10
+#      textfont: size: 10
 
       marker:
         color: COLORS[clusterNr]
-        sizeref: .48
-        size:    entries.freq
+#        sizeref: .48
+#        size:    entries.freq
 
-      text: entries.action
+      text: entries.book
       x:    entries.x2D
       y:    entries.y2D
 
@@ -123,7 +178,7 @@ load3Dfigure = (containerId, coords) ->
         zeroline: off
         title: ''
 
-    height: 600
+#    height: 600
     margin:
       t: 50
       b: 0
@@ -142,11 +197,11 @@ load3Dfigure = (containerId, coords) ->
       mode: 'markers+text'
       hoverinfo: 'text'
       textposition: 'top center'
-      textfont: size: 10
-      marker:
-        sizeref: 0.48
-        size: entries.freq
-      text: entries.action
+#      textfont: size: 10
+#      marker:
+#        sizeref: 0.48
+#        size: entries.freq
+      text: entries.book
       x: entries.x3D
       y: entries.y3D
       z: entries.z3D
