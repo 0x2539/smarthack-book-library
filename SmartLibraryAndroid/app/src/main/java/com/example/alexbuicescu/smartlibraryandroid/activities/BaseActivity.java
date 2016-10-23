@@ -4,7 +4,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ContextThemeWrapper;
 
+import com.example.alexbuicescu.smartlibraryandroid.R;
 import com.example.alexbuicescu.smartlibraryandroid.pojos.eventbus.BaseRestEventBusMessage;
 
 import org.greenrobot.eventbus.EventBus;
@@ -41,15 +43,15 @@ public class BaseActivity extends AppCompatActivity {
         if (!message.isSuccess() && message.getErrorMessage() != null) {
             String errorMessage = null;
             if (message.getErrorMessage().equals("LOGIN_INVALID")) {
-                errorMessage = "You are not logged in";
+                errorMessage = "Wrong credentials!";
             }
 
             if (message.getErrorMessage().equals("CANT_BORROW")) {
-                errorMessage = "You can't borrow anymore books";
+                errorMessage = "You can't borrow anymore books. You already borrowed 5";
             }
 
             if (errorMessage != null) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.MyAlertDialogStyle))
                         .setMessage(errorMessage)
                         .setPositiveButton(
                                 "OK",
