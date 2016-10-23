@@ -1,5 +1,7 @@
 package com.example.alexbuicescu.smartlibraryandroid.utils;
 
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,8 +12,10 @@ import java.util.Date;
 
 public class Utils {
 
+    private static final String TAG = Utils.class.getSimpleName();
+
     public static Date stringToDate(String dateAsString){
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
             Date date = format.parse(dateAsString);
             return date;
@@ -36,6 +40,8 @@ public class Utils {
         long minutes = seconds / 60;
         long hours = minutes / 60;
         long days = hours / 24;
+
+        Log.i(TAG, "isDateSoon: " + days);
 
         return days < 67;
     }

@@ -29,9 +29,9 @@ public class ProfileCallback extends HttpCallbackCustom<EmptyRequest, ProfileRes
 
         if (onResponseBase(response)) {
             Log.i(TAG, "onResponse: sending true");
-            ProfileManager.getInstance().setFirstName(response.body().getFirstName());
-            ProfileManager.getInstance().setLastName(response.body().getLastName());
-            ProfileManager.getInstance().setEmail(response.body().getEmail());
+            ProfileManager.getInstance().setFirstName(response.body().getProfile().getFirstName());
+            ProfileManager.getInstance().setLastName(response.body().getProfile().getLastName());
+            ProfileManager.getInstance().setEmail(response.body().getProfile().getEmail());
             EventBus.getDefault().post(new ProfileMessage(true));
         } else {
             Log.i(TAG, "onResponse: sending false");

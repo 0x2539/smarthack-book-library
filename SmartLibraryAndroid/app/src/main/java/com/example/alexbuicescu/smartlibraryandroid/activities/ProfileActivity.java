@@ -9,6 +9,7 @@ import android.widget.EditText;
 import com.example.alexbuicescu.smartlibraryandroid.R;
 import com.example.alexbuicescu.smartlibraryandroid.managers.ProfileManager;
 import com.example.alexbuicescu.smartlibraryandroid.pojos.eventbus.ProfileMessage;
+import com.example.alexbuicescu.smartlibraryandroid.pojos.eventbus.UpdateProfileMessage;
 import com.example.alexbuicescu.smartlibraryandroid.rest.RestClient;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -85,6 +86,13 @@ public class ProfileActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Subscribe
+    public void onEvent(UpdateProfileMessage message) {
+        if (message.isSuccess()) {
+            finish();
+        }
     }
 
     @Subscribe

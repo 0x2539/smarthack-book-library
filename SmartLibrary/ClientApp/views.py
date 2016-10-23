@@ -16,6 +16,7 @@ POST = 'POST'
 
 json_serialize = partial(serialize, 'json')
 json_response = lambda data: HttpResponse(json_serialize(data), content_type='application/json')
+json_obj_response = lambda data: HttpResponse(json.dumps(json.loads(json_serialize(data))[0]), content_type='application/json')
 
 
 def home(request):
@@ -71,13 +72,24 @@ def login(request):
 
 @login_only
 def profile(request, user_id):
-    user = User.objects.filter(id=user_id)
-    return json_response(user)
+    try:
+        user = User.objects.get(id=user_id)
+    except User.DoesNotExist:
+        # we have no object!  do something
+        user = {}
+
+    print (json.dumps(json.loads(json_serialize([user]))[0]))
+    print ('user:', user.first_name)
+
+    return json_obj_response([user])
 
 
 @login_only
 def update_profile(request, user_id):
-    user = User.objects.filter(id=user_id)
+    try:
+        user = User.objects.get(id=user_id)
+    except User.DoesNotExist:
+        return HttpResponse(status=400, content='User & Password or Google ID not specified/incorrect')
 
     body = json.loads(request.body.decode('utf-8'))
 
@@ -97,7 +109,13 @@ def update_profile(request, user_id):
 def loaned_by(request, user_id):
     loans = Loan.objects.filter(user_id=user_id)
     books = [loan.book for loan in loans]
-    return json_response(books)
+    books_json = json.loads(json_serialize(books))
+    for i, book in enumerate(books_json):
+        for loan in loans:
+            if loan.book.id == book['pk']:
+                books_json[i]['fields']['return_date'] = loan.return_date.strftime('%Y-%m-%d')
+                break
+    return HttpResponse(status=200, content=json.dumps(books_json))
 
 
 def loaned_together_with(request, book_id):

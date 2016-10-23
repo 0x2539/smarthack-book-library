@@ -9,7 +9,7 @@ from dateutil import parser
 import datetime
 from send_notification_to_fcm import send_notification
 
-URL_BASE = 'http://192.168.1.45:5728/api/'
+URL_BASE = 'http://192.168.1.95:5728/api/'
 
 def get_all_loans():
     dataAsJSON = json.dumps({'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImV4cCI6MTUwODcxODA4M30.rx2Zos9rJQs_w9qTawEpVQjLK14MGpr5UCzBz_cu5RU'})

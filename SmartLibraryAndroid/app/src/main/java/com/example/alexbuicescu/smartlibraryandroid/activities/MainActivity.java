@@ -76,6 +76,7 @@ public class MainActivity extends BaseActivity {
 
     private void loadBooks() {
         RestClient.getInstance(MainActivity.this).BOOKS_CALL();
+        RestClient.getInstance(MainActivity.this).BORROWED_CALL();
     }
 
     private void initLayout() {
@@ -203,7 +204,7 @@ public class MainActivity extends BaseActivity {
             }
         });
         username = (TextView) navigationView.getHeaderView(0).findViewById(R.id.navigation_drawer_header_layout_name_textview);
-        username.setText("Alex");//UserPreferences.getUsername(MainActivity.this));
+        username.setText(UserPreferences.getUsername(MainActivity.this));
         navigationToggle = new SmoothActionBarDrawerToggle(
                 (AppCompatActivity) MainActivity.this,
                 drawerLayout,
