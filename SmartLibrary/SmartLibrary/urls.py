@@ -31,4 +31,5 @@ urlpatterns = [
     url(r'^api/loaned_together_with/(?P<book_id>\d+)/?$', views.loaned_together_with, name='loaned together with'),
     url(r'^api/loan_date/(?P<book_id>\d+)/?$', views.loan_date, name='loan date'),
     url(r'^api/place_loan/(?P<book_id>\d+)/?$', views.place_loan, name='place loan'),
+    url(r'^api/all_loans', views.all_loans, name='all loans'),
 ]
