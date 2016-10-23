@@ -245,6 +245,7 @@ def populate():
                author='Nicholas Sparks',
                description='Noah is restoring a plantation home to its former glory, and he is haunted by images of the beautiful girl he met fourteen years earlier, a girl he loved like no other. Unable to find her, yet unwilling to forget the summer they spent together, Noah is content to live with only memories...until she unexpectedly returns to his town to see him once again.',
                release_date=datetime(day=5, month=6, year=1996),
+               cover_url='https://images.gr-assets.com/books/1385738917l/15931.jpg',
                genre='R',
 
                complexity=2,
@@ -259,6 +260,7 @@ def populate():
                author='Lewis Carroll',
                description='Weary of her storybook, one "without pictures or conversations," the young and imaginative Alice follows a hasty hare underground--to come face-to-face with some of the strangest adventures and most fantastic characters in all of literature. ',
                release_date=datetime(day=5, month=6, year=1865),
+               cover_url='https://images.gr-assets.com/books/1391458382l/13023.jpg',
                genre='Fan',
 
                complexity=1,
@@ -273,6 +275,7 @@ def populate():
                author='John Green',
                description='Despite the tumor-shrinking medical miracle that has bought her a few years, Hazel has never been anything but terminal, her final chapter inscribed upon diagnosis. But when a gorgeous plot twist named Augustus Waters suddenly appears at Cancer Kid Support Group, Hazel\'s story is about to be completely rewritten.',
                release_date=datetime(day=10, month=1, year=2012),
+               cover_url='https://images.gr-assets.com/books/1360206420l/11870085.jpg',
                genre='R',
 
                complexity=2,
@@ -287,6 +290,7 @@ def populate():
                author='Markus Zusak',
                description='It’s just a small story really, about among other things: a girl, some words, an accordionist, some fanatical Germans, a Jewish fist-fighter, and quite a lot of thievery. . . .',
                release_date=datetime(day=5, month=6, year=2005),
+               cover_url='https://images.gr-assets.com/books/1390053681l/19063.jpg',
                genre='SF',
 
                complexity=5,
@@ -301,6 +305,7 @@ def populate():
                author='J. K. Rowling',
                description='Harry Potter\'s life is miserable. His parents are dead and he\'s stuck with his heartless relatives, who force him to live in a tiny closet under the stairs. But his fortune changes when he receives a letter that tells him the truth about himself: he\'s a wizard. ',
                release_date=datetime(day=5, month=6, year=1997),
+               cover_url='https://images.gr-assets.com/books/1474154022l/3.jpg',
                genre='Fan',
 
                complexity=2,
@@ -315,6 +320,7 @@ def populate():
                author='JRR Tolkein',
                description='In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means comfort.',
                release_date=datetime(day=5, month=6, year=1937),
+               cover_url='https://images.gr-assets.com/books/1372847500l/5907.jpg',
                genre='Fan',
 
                complexity=6,
@@ -329,6 +335,7 @@ def populate():
                author='William Shakespeare',
                description='In Romeo and Juliet, Shakespeare creates a world of violence and generational conflict in which two young people fall in love and die because of that love. The story is rather extraordinary in that the normal problems faced by young lovers are here so very large.',
                release_date=datetime(day=5, month=6, year=1595),
+               cover_url='https://images.gr-assets.com/books/1327872146l/18135.jpg',
                genre='R',
 
                complexity=3,
@@ -343,6 +350,7 @@ def populate():
                author='Oscar Wilde',
                description='Written in his distinctively dazzling manner, Oscar Wilde’s story of a fashionable young man who sells his soul for eternal youth and beauty is the author’s most popular work. ',
                release_date=datetime(day=5, month=6, year=1890),
+               cover_url='https://images.gr-assets.com/books/1424596966l/5297.jpg',
                genre='SF',
 
                complexity=5,
@@ -357,6 +365,7 @@ def populate():
                author='Bram Stoker',
                description='A rich selection of background and source materials is provided in three areas: Contexts includes probable inspirations for Dracula in the earlier works of James Malcolm Rymer and Emily Gerard. ',
                release_date=datetime(day=5, month=6, year=1897),
+               cover_url='https://images.gr-assets.com/books/1387151694l/17245.jpg',
                genre='SF',
 
                complexity=2,
@@ -371,6 +380,7 @@ def populate():
                author='F. Scott Fitzgerald',
                description='The story of the fabulously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan, of lavish parties on Long Island at a time when The New York Times noted “gin was the national drink and sex the national obsession,” it is an exquisitely crafted tale of America in the 1920s.',
                release_date=datetime(day=5, month=6, year=1925),
+               cover_url='https://images.gr-assets.com/books/1438728255l/4671.jpg',
                genre='R',
 
                complexity=3,
@@ -385,6 +395,7 @@ def populate():
                  author='Apple Inc',
                  description='Swift is a programming language for creating iOS, macOS, watchOS, and tvOS apps. Swift builds on the best of C and Objective-C, without the constraints of C compatibility.',
                  release_date=datetime(day=2, month=6, year=2014),
+                 cover_url='https://images.gr-assets.com/books/1440784267l/26182448.jpg',
                  genre='Prog',
 
                  complexity=6,
@@ -399,6 +410,7 @@ def populate():
                  author='Suzanne Collins',
                  description='Winning will make you famous. Losing means certain death.',
                  release_date=datetime(day=14, month=9, year=2008),
+                 cover_url='https://images.gr-assets.com/books/1447303603l/2767052.jpg',
                  genre='SF',
 
                  complexity=4,
@@ -413,6 +425,7 @@ def populate():
                  author='J. K. Rowling',
                  description='Harry Potter is due to start his fifth year at Hogwarts School of Witchcraft and Wizardry. His best friends Ron and Hermione have been very secretive all summer and he is desperate to get back to school and find out what has been going on. However, what Harry discovers is far more devastating than he could ever have expected...',
                  release_date=datetime(day=10, month=8, year=2004),
+                 cover_url='https://images.gr-assets.com/books/1387141547l/2.jpg',
                  genre='Fan',
 
                  complexity=2,
@@ -427,6 +440,7 @@ def populate():
                  author='Jane Austen',
                  description='tells the story of Mr and Mrs Bennet\'s five unmarried daughters after the rich and eligible Mr Bingley and his status-conscious friend, Mr Darcy, have moved into their neighbourhood. "It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife."',
                  release_date=datetime(day=10, month=6, year=2000),
+                 cover_url='https://images.gr-assets.com/books/1320399351l/1885.jpg',
                  genre='SF',
 
                  complexity=4,
