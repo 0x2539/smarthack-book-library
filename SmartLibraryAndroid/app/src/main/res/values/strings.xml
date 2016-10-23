@@ -24,10 +24,12 @@
 
     <string name="borrow_book_button">Borrow</string>
     <string name="book_extend_period">Extend Period</string>
+    <string name="book_read">Alread Read</string>
 
     <string name="recommendations">Loaned together</string>
     <string name="deadline">Deadline</string>
 
     <string name="scan_book">Scan your book</string>
+    <string name="due_soon">Due Soon</string>
 
 </resources>

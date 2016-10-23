@@ -18,11 +18,16 @@ public class Book {
     @SerializedName("release_date")
     private String releaseDate;
 
+    @SerializedName("return_date")
+    private String returnDate;
+
     @SerializedName("cover_url")
     private String coverUrl;
 
     @SerializedName("genre")
     private BookGenreEnum genre;
+
+    private boolean dueSoon;
 
     public String getTitle() {
         return title;
@@ -70,5 +75,21 @@ public class Book {
 
     public void setGenre(BookGenreEnum genre) {
         this.genre = genre;
+    }
+
+    public boolean isDueSoon() {
+        return dueSoon;
+    }
+
+    public void setDueSoon(boolean dueSoon) {
+        this.dueSoon = dueSoon;
+    }
+
+    public String getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(String returnDate) {
+        this.returnDate = returnDate;
     }
 }

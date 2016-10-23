@@ -1,9 +1,12 @@
 package com.example.alexbuicescu.smartlibraryandroid.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.alexbuicescu.smartlibraryandroid.R;
@@ -38,13 +41,21 @@ public class BorrowedActivity extends BaseActivity {
         booksAdapter = new BooksListAdapter(BorrowedActivity.this);
         booksListView = (ListView) findViewById(R.id.activity_borrowed_listview);
         booksListView.setAdapter(booksAdapter);
+        booksListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(BorrowedActivity.this, BookDetailsActivity.class);
+                intent.putExtra(BookDetailsActivity.KEY_BOOK_ID, booksAdapter.getCurrentItems().get(position).getBookId());
+                BorrowedActivity.this.startActivity(intent);
+            }
+        });
     }
 
     private void initToolbar() {
         try {
             ((AppCompatActivity) BorrowedActivity.this).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             ((AppCompatActivity) BorrowedActivity.this).getSupportActionBar().setHomeButtonEnabled(true);
-            ((AppCompatActivity) BorrowedActivity.this).getSupportActionBar().setTitle("");
+            ((AppCompatActivity) BorrowedActivity.this).getSupportActionBar().setTitle("Borrowed Books");
         } catch (Exception e) {
 
         }

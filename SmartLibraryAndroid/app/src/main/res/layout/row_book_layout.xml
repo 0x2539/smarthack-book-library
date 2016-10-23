@@ -49,13 +49,35 @@
                 android:text="@string/book_year_genre"
                 android:textColor="@color/black" />
 
-            <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/row_book_layout_cover_imageview"
-                android:layout_width="100dp"
+            <RelativeLayout
+                android:layout_width="76dp"
                 android:layout_height="100dp"
-                android:layout_alignParentRight="true"
-                android:scaleType="fitCenter"
-                app:srcCompat="@color/white" />
+                android:layout_alignParentRight="true">
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/row_book_layout_cover_imageview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@color/white" />
+                <TextView
+                    android:id="@+id/row_book_layout_due_soon_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/due_soon"
+                    android:textColor="@color/white"
+                    android:background="@color/red_late"
+                    android:visibility="gone"/>
+                <TextView
+                    android:id="@+id/row_book_layout_read_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/due_soon"
+                    android:textColor="@color/white"
+                    android:background="@color/grey_read"
+                    android:visibility="gone"/>
+            </RelativeLayout>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>
