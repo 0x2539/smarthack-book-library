@@ -8,13 +8,17 @@ import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.LoanDateCallb
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.LoanedTogetherWithCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.LoginCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.MainBooksCallback;
+import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.ProfileCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.SearchCallback;
+import com.example.alexbuicescu.smartlibraryandroid.rest.callbacks.UpdateProfileCallback;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.EmptyRequest;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.LoggedInRequest;
 import com.example.alexbuicescu.smartlibraryandroid.rest.requests.LoginRequest;
+import com.example.alexbuicescu.smartlibraryandroid.rest.requests.UpdateProfileRequest;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.LoanDateResponse;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.LoginResponse;
 import com.example.alexbuicescu.smartlibraryandroid.rest.responses.MainBooksResponse;
+import com.example.alexbuicescu.smartlibraryandroid.rest.responses.ProfileResponse;
 import com.example.alexbuicescu.smartlibraryandroid.utils.UserPreferences;
 
 import java.util.ArrayList;
@@ -115,6 +119,27 @@ public class RestClient {
         Call<EmptyRequest> call = getApiService().BORROW_CALL(bookId, request);
         //asynchronous call
         call.enqueue(new BorrowCallback(context, new EmptyRequest()));
+    }
+
+    public void PROFILE_CALL() {
+
+        LoggedInRequest request = new LoggedInRequest(UserPreferences.getLoginToken(context));
+        Call<ProfileResponse> call = getApiService().PROFILE_CALL(request);
+        //asynchronous call
+        call.enqueue(new ProfileCallback(context, new EmptyRequest()));
+    }
+
+    public void UPDATE_PROFILE_CALL(String firstName, String lastName, String email) {
+
+        UpdateProfileRequest request = new UpdateProfileRequest(
+                UserPreferences.getLoginToken(context),
+                firstName,
+                lastName,
+                email
+        );
+        Call<EmptyRequest> call = getApiService().UPDATE_PROFILE_CALL(request);
+        //asynchronous call
+        call.enqueue(new UpdateProfileCallback(context, request));
     }
 
     private void setContext(Context context) {

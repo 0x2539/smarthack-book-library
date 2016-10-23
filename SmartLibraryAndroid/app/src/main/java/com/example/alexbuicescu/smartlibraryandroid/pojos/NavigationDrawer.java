@@ -6,6 +6,7 @@ import com.example.alexbuicescu.smartlibraryandroid.R;
 import com.example.alexbuicescu.smartlibraryandroid.activities.BorrowedActivity;
 import com.example.alexbuicescu.smartlibraryandroid.activities.LoginActivity;
 import com.example.alexbuicescu.smartlibraryandroid.activities.MainActivity;
+import com.example.alexbuicescu.smartlibraryandroid.activities.ProfileActivity;
 import com.example.alexbuicescu.smartlibraryandroid.activities.ScanBookActivity;
 
 import java.util.Collections;
@@ -26,7 +27,7 @@ public abstract class NavigationDrawer {
         aMap.put(R.id.navigation_drawer_menu_borrowed_action, new BorrowedActivity());
         aMap.put(R.id.navigation_drawer_menu_scan_book_action, new ScanBookActivity());
         aMap.put(R.id.navigation_drawer_menu_recommended_action, new LoginActivity());
-        aMap.put(R.id.navigation_drawer_menu_profile_action, new LoginActivity());
+        aMap.put(R.id.navigation_drawer_menu_profile_action, new ProfileActivity());
         aMap.put(R.id.navigation_drawer_menu_settings_action, new LoginActivity());
 
         navigationDrawerItemsActivitiesMap = Collections.unmodifiableMap(aMap);

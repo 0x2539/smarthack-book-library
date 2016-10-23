@@ -32,4 +32,8 @@
     <string name="scan_book">Scan your book</string>
     <string name="due_soon">Due Soon</string>
 
+    <string name="hint_firstname">First Name</string>
+    <string name="hint_lastname">Last Name</string>
+    <string name="hint_email">Email</string>
+
 </resources>
