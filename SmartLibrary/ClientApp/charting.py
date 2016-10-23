@@ -14,7 +14,7 @@ def compute_coords():
         return CACHED_COORDS
 
     df = pd.DataFrame.from_records(Book.objects.all().values())
-    df = df[['short_name', 'humor', 'nr_pages', 'popularity']]
+    df = df[['short_name', 'humor', 'nr_pages', 'popularity']]  # TODO extra features, remove nr pages
     df = df.set_index('short_name')
     df.index.name = 'book'
 

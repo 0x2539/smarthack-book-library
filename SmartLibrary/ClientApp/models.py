@@ -114,7 +114,10 @@ def populate():
                 complexity=6,
                 nr_pages=400,
                 popularity=8,
-                humor=5
+                humor=5,
+
+                featureX=10,
+                featureY=2
                 )
 
     sw = make(Book,
@@ -162,7 +165,7 @@ def populate():
 
     prince = make(Book,
                title='The Little Prince',
-               short_name='Little Prince',
+               short_name='Prince',
                author='Antonie de Saint-Exupery',
                description='With a timeless charm it tells the story of a little boy who leaves the safety of his own tiny planet to travel the universe, learning the vagaries of adult behaviour through a series of extraordinary encounters. His personal odyssey culminates in a voyage to Earth and further adventures. ',
                release_date=datetime(day=5, month=6, year=1943),
@@ -176,7 +179,7 @@ def populate():
 
     notebook = make(Book,
                title='The Notebook',
-               short_name='The Notebook',
+               short_name='Notebook',
                author='Nicholas Sparks',
                description='Noah is restoring a plantation home to its former glory, and he is haunted by images of the beautiful girl he met fourteen years earlier, a girl he loved like no other. Unable to find her, yet unwilling to forget the summer they spent together, Noah is content to live with only memories...until she unexpectedly returns to his town to see him once again.',
                release_date=datetime(day=5, month=6, year=1996),
@@ -190,7 +193,7 @@ def populate():
 
     alice = make(Book,
                title='Alice\'s Adventures in Wonderland',
-               short_name='Alice in Wonderland',
+               short_name='Alice',
                author='Lewis Carroll',
                description='Weary of her storybook, one "without pictures or conversations," the young and imaginative Alice follows a hasty hare underground--to come face-to-face with some of the strangest adventures and most fantastic characters in all of literature. ',
                release_date=datetime(day=5, month=6, year=1865),
@@ -204,7 +207,7 @@ def populate():
 
     fault = make(Book,
                title='The Fault in Our Stars',
-               short_name='Fault in Our Stars',
+               short_name='Stars',
                author='John Green',
                description='Despite the tumor-shrinking medical miracle that has bought her a few years, Hazel has never been anything but terminal, her final chapter inscribed upon diagnosis. But when a gorgeous plot twist named Augustus Waters suddenly appears at Cancer Kid Support Group, Hazel\'s story is about to be completely rewritten.',
                release_date=datetime(day=10, month=1, year=2012),
@@ -218,7 +221,7 @@ def populate():
 
     thief = make(Book,
                title='The Book Thief',
-               short_name='Book Thief',
+               short_name='BookThief',
                author='Markus Zusak',
                description='It’s just a small story really, about among other things: a girl, some words, an accordionist, some fanatical Germans, a Jewish fist-fighter, and quite a lot of thievery. . . .',
                release_date=datetime(day=5, month=6, year=2005),
@@ -232,7 +235,7 @@ def populate():
 
     harry1 = make(Book,
                title='Harry Potter and the Sorcerer\'s Stone',
-               short_name='Potter & the Stone',
+               short_name='HP3',
                author='J. K. Rowling',
                description='Harry Potter\'s life is miserable. His parents are dead and he\'s stuck with his heartless relatives, who force him to live in a tiny closet under the stairs. But his fortune changes when he receives a letter that tells him the truth about himself: he\'s a wizard. ',
                release_date=datetime(day=5, month=6, year=1997),
@@ -260,7 +263,7 @@ def populate():
 
     romeo = make(Book,
                title='Romeo and Juliet',
-               short_name='Romeo & Juliet',
+               short_name='R&J',
                author='William Shakespeare',
                description='In Romeo and Juliet, Shakespeare creates a world of violence and generational conflict in which two young people fall in love and die because of that love. The story is rather extraordinary in that the normal problems faced by young lovers are here so very large.',
                release_date=datetime(day=5, month=6, year=1595),
@@ -274,7 +277,7 @@ def populate():
 
     dorian = make(Book,
                title='The Picture of Dorian Grey',
-               short_name='Dorian Grey',
+               short_name='DorianGrey',
                author='Oscar Wilde',
                description='Written in his distinctively dazzling manner, Oscar Wilde’s story of a fashionable young man who sells his soul for eternal youth and beauty is the author’s most popular work. ',
                release_date=datetime(day=5, month=6, year=1890),
@@ -426,19 +429,19 @@ def populate():
                humor=1
                )
 
-    miserables = make(Book,
-               title='Les Miserables',
-               short_name='Miserables',
-               author='Victor Hugo',
-               description='Introducing one of the most famous characters in literature, Jean Valjean - the noble peasant imprisoned for stealing a loaf of bread. In Les Misérables Victor Hugo takes readers deep into the Parisian underworld, immerses them in a battle between good and evil, and carries them onto the barricades during the uprising of 1832. ',
-               release_date=datetime(day=5, month=6, year=1862),
-               genre='Historical',
-
-               complexity=5,
-               nr_pages=1463,
-               popularity=6,
-               humor=1
-               )
+    # miserables = make(Book,
+    #            title='Les Miserables',
+    #            short_name='Miserables',
+    #            author='Victor Hugo',
+    #            description='Introducing one of the most famous characters in literature, Jean Valjean - the noble peasant imprisoned for stealing a loaf of bread. In Les Misérables Victor Hugo takes readers deep into the Parisian underworld, immerses them in a battle between good and evil, and carries them onto the barricades during the uprising of 1832. ',
+    #            release_date=datetime(day=5, month=6, year=1862),
+    #            genre='Historical',
+    #
+    #            complexity=5,
+    #            nr_pages=1463,
+    #            popularity=6,
+    #            humor=1
+    #            )
 
     # Users
     stefan = make(User,

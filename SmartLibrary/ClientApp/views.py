@@ -205,20 +205,15 @@ def all_loans(request, user_id):
     return json_response(Loan.objects.all())
 
 
-# TODO display this in user
-# @login_only
-def close_for(request):
-    user = User.objects.get(id=2)
+@login_only
+def close_for(request, user_id):
+    user = User.objects.get(id=user_id)
     loaned_books = [loan.book for loan in Loan.objects.filter(user=user)]
     coords = compute_coords().copy()
-    book_lists = [book.nearest(coords) for book in loaned_books]
-
+    book_lists = [book.nearest(coords, n_neighbours=1) for book in loaned_books]
     recomms = join_querysets(book_lists)
     not_read = [recomm for recomm in recomms if recomm not in loaned_books]
-
-    print('>'*25, [recomm for recomm in recomms if recomm not in loaned_books])
-
-    return json_serialize(not_read)
+    return json_response(not_read)
 
 
 
