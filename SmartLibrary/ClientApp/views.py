@@ -70,6 +70,30 @@ def login(request):
 
 
 @login_only
+def profile(request, user_id):
+    user = User.objects.filter(id=user_id)
+    return json_response(user)
+
+
+@login_only
+def update_profile(request, user_id):
+    user = User.objects.filter(id=user_id)
+
+    body = json.loads(request.body.decode('utf-8'))
+
+    first_name = body.get('first_name', None)
+    last_name = body.get('last_name', None)
+    email = body.get('email', None)
+
+    user.first_name = first_name
+    user.last_name = last_name
+    user.email = email
+    user.save()
+
+    return HttpResponse(status=200, content=json.dumps({}))
+
+
+@login_only
 def loaned_by(request, user_id):
     loans = Loan.objects.filter(user_id=user_id)
     books = [loan.book for loan in loans]
