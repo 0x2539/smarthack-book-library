@@ -1,5 +1,5 @@
 :root {
-  --dark-primary-color:  #00796B;
+  --dark-primary-color:  #0097A7;
   --primary-color:       #009688;
   --light-primary-color: #B2DFDB;
   --accent-color:        #FF4081;
@@ -7,7 +7,7 @@
 
 .intro-header{
   height:630px;
-  padding-top:50px;
+  padding-top:100px;
   padding-bottom:50px;
   color:#f8f8f8;
   background-size:cover;
@@ -129,5 +129,48 @@ header {
 .navbar-default .nav > li.active > a,
 .navbar-default .nav > li.active > a:focus {
   color: var(--accent-color) !important;
-  background-color: transparent;
+}
+
+#contact.bg-primary {
+  background: var(--primary-color);
+}
+
+#download.bg-primary {
+  background: var(--light-primary-color);
+}
+
+/*User*/
+.users {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+
+.badge-link:hover, .badge-link:focus, .badge-link:visited, .badge-link:link, .badge-link:active {
+  text-decoration: none;
+  pointer-events: none;
+  cursor: default;
+}
+.one {
+  background-image: url('../img/alex.jpg');
+}
+
+.two {
+  background-image: url('../img/ade.jpg');
+}
+
+.three {
+  background-image: url('../img/stefan.jpg');
+}
+
+.four {
+  background-image: url('../img/fox.jpg');
 }
