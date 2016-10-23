@@ -18,7 +18,7 @@ public enum BookGenreEnum {
     @SerializedName("SelfDev")
     SELF_DEVELOPMENT("Self Development"),
 
-    @SerializedName("Romance")
+    @SerializedName("R")
     ROMANCE("ROMANCE");
 
     private String value;
