@@ -135,10 +135,11 @@ load2Dfigure = (containerId, coords) ->
       textposition: 'top center'
 #      textfont: size: 10
 
-#      marker:
+      marker:
 #        color: COLORS[clusterNr]
-#        sizeref: .48
+#        sizeref: 1
 #        size:    entries.freq
+        size:    15
 
       text: entries.book
       x:    entries.x2D

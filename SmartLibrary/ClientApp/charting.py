@@ -1,5 +1,6 @@
 from sklearn.decomposition import PCA
-from sklearn.cluster import AffinityPropagation
+from sklearn.cluster import AffinityPropagation, KMeans
+from sklearn.preprocessing import RobustScaler, StandardScaler
 import pandas as pd
 
 from .models import Book
@@ -13,11 +14,15 @@ def compute_coords():
         return CACHED_COORDS
 
     df = pd.DataFrame.from_records(Book.objects.all().values())
-    df = df[['short_name', 'humor', 'id', 'nr_pages', 'popularity']]
+    df = df[['short_name', 'humor', 'nr_pages', 'popularity']]
     df = df.set_index('short_name')
     df.index.name = 'book'
 
     X = df.values
+    # scaler = RobustScaler(quantile_range=(15, 85))
+    scaler = RobustScaler(quantile_range=(30, 70))
+    # scaler = StandardScaler()
+    X = scaler.fit_transform(X)
 
     coords = pd.DataFrame(index=df.index)
 
@@ -36,7 +41,8 @@ def compute_coords():
             coords['{}{}D'.format(name, dim)] = [coord[i] for coord in transformed]
 
         dim_cols = [col for col in coords.columns if col.endswith(str(2) + 'D')]
-        cl = AffinityPropagation(max_iter=500)
+        # cl = AffinityPropagation(max_iter=500)
+        cl = KMeans(n_clusters=5)
         print('Running Clustering %dD' % dim)
         labels = cl.fit_predict(coords[dim_cols])
         coords['cluster%dD' % dim] = labels

@@ -7,7 +7,7 @@ from django.db.models.signals import post_save
 from django.core.validators import MaxValueValidator, MinValueValidator
 import numpy as np
 
-from .charting import compute_coords
+# from .charting import compute_coords
 
 join_querysets = lambda sets: set(chain(*sets))
 GRADE_VALIDATORS = [MinValueValidator(1), MaxValueValidator(10)]
@@ -177,7 +177,7 @@ def populate():
 
     hunger = make(Book,
                  title='The Hunger Games',
-                 short_name='Hunger Games',
+                 short_name='Hunger',
                  author='Suzanne Collins',
                  description='Winning will make you famous. Losing means certain death.',
                  release_date=datetime(day=14, month=9, year=2008),
@@ -191,7 +191,7 @@ def populate():
 
     potter = make(Book,
                  title='Harry Potter and The Order of the Phoenix',
-                 short_name='Potter and the Phoenix',
+                 short_name='HP5',
                  author='J. K. Rowling',
                  description='Harry Potter is due to start his fifth year at Hogwarts School of Witchcraft and Wizardry. His best friends Ron and Hermione have been very secretive all summer and he is desperate to get back to school and find out what has been going on. However, what Harry discovers is far more devastating than he could ever have expected...',
                  release_date=datetime(day=10, month=8, year=2004),
@@ -205,7 +205,7 @@ def populate():
 
     pride = make(Book,
                  title='Pride and Prejudice',
-                 short_name='Pride & Prejudice',
+                 short_name='P&P',
                  author='Jane Austen',
                  description='tells the story of Mr and Mrs Bennet\'s five unmarried daughters after the rich and eligible Mr Bingley and his status-conscious friend, Mr Darcy, have moved into their neighbourhood. "It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife."',
                  release_date=datetime(day=10, month=6, year=2000),
@@ -247,7 +247,7 @@ def populate():
 
     davinci = make(Book,
                title='The Da Vinci Code',
-               short_name='Da Vinci Code',
+               short_name='DaVinci',
                author='Dan Brown',
                description='An ingenious code hidden in the works of Leonardo da Vinci. A desperate race through the cathedrals and castles of Europe. An astonishing truth concealed for centuries . . . unveiled at last.',
                release_date=datetime(day=5, month=6, year=2006),
@@ -261,7 +261,7 @@ def populate():
 
     geisha = make(Book,
                title='Memoirs of a Geisha',
-               short_name='Memoirs of a Geisha',
+               short_name='Geisha',
                author='Arthur Golden',
                description='In Memoirs of a Geisha, we enter a world where appearances are paramount; where a girl\'s virginity is auctioned to the highest bidder; where women are trained to beguile the most powerful men; and where love is scorned as illusion. It is a unique and triumphant work of fiction - at once romantic, erotic, suspenseful - and completely unforgettable.',
                release_date=datetime(day=5, month=6, year=2005),
@@ -275,7 +275,7 @@ def populate():
 
     miserables = make(Book,
                title='Les Miserables',
-               short_name='Les Miserables',
+               short_name='Miserables',
                author='Victor Hugo',
                description='Introducing one of the most famous characters in literature, Jean Valjean - the noble peasant imprisoned for stealing a loaf of bread. In Les Misérables Victor Hugo takes readers deep into the Parisian underworld, immerses them in a battle between good and evil, and carries them onto the barricades during the uprising of 1832. ',
                release_date=datetime(day=5, month=6, year=1862),
